@@ -12,6 +12,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    [[UICollectionView appearance]setBackgroundColor:[UIColor whiteColor ]];
     // Override point for customization after application launch.
     return YES;
 }
