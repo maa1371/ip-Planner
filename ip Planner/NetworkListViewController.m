@@ -10,9 +10,13 @@
 
 @interface NetworkListViewController ()
 
+
+
 @end
 
 @implementation NetworkListViewController
+
+NSMutableArray * iNetwork;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -26,6 +30,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    iNetwork=[[NSMutableArray alloc]init];
+    NSString    *new1=@"network1";
+    NSString    *new2=@"network2";
+    
+    [iNetwork addObject:new1];
+    [iNetwork addObject:new2];
     
        
     
@@ -46,22 +57,25 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return iNetwork.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"Netwrokid";
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    
+    
+    [cell.textLabel setText:[iNetwork objectAtIndex:indexPath.row]];
     
     // Configure the cell...
     
