@@ -1,14 +1,14 @@
 //
-//  ProjectViewController.h
+//  ProjectList.m
 //  ip Planner
 //
 //  Created by Mohammad Amin Ansari on 4/25/14.
 //  Copyright (c) 2014 Mohammad Amin Ansari. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "Project.h" 
+#import "Project.h"
 
-@interface ProjectViewController : UICollectionViewController
+@implementation Project
+@synthesize ProjectIndex,ProjectName  ;
 
 @end

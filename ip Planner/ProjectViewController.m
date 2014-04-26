@@ -15,7 +15,8 @@
 
 @implementation ProjectViewController
 
-NSArray * Photos;
+NSMutableArray * ProjectList ;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,11 +30,63 @@ NSArray * Photos;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-   // UIView  * UiBackground=[[UIView alloc]init];
-   // UIColor *white=[[UIColor alloc]init];
-   // [[[UiBackground.backgroundColor]UIColor]];
     
-    Photos = [NSArray arrayWithObjects:@"angry_birds_cake.jpg", @"creme_brelee.jpg", @"egg_benedict.jpg", @"full_breakfast.jpg", @"green_tea.jpg", @"ham_and_cheese_panini.jpg", @"ham_and_egg_sandwich.jpg", @"hamburger.jpg", @"instant_noodle_with_egg.jpg", @"japanese_noodle_with_pork.jpg", @"mushroom_risotto.jpg", @"noodle_with_bbq_pork.jpg", @"starbucks_coffee.jpg", @"thai_shrimp_cake.jpg", @"vegetable_curry.jpg", @"white_chocolate_donut.jpg", nil];
+    
+    ProjectList=[[NSMutableArray alloc]init];
+    
+    Project *NewProject =[[Project alloc ]init];
+    
+    [NewProject setProjectName:@"Project1"];
+    
+    [ProjectList addObject:NewProject];
+    
+    [NewProject setProjectName:@"Project1"];
+    
+    [ProjectList addObject:NewProject];
+    
+    [NewProject setProjectName:@"Project1"];
+    
+    [ProjectList addObject:NewProject];
+    
+    [NewProject setProjectName:@"Project1"];
+    
+    [ProjectList addObject:NewProject];
+    
+    [NewProject setProjectName:@"Project1"];
+    
+    [ProjectList addObject:NewProject];
+    
+    [NewProject setProjectName:@"Project1"];
+    
+    [ProjectList addObject:NewProject];
+    
+    [NewProject setProjectName:@"Project1"];
+    
+    [ProjectList addObject:NewProject];
+    
+    [NewProject setProjectName:@"Project1"];
+    
+    [ProjectList addObject:NewProject];
+    
+    [NewProject setProjectName:@"Project1"];
+    
+    [ProjectList addObject:NewProject];
+    
+    [NewProject setProjectName:@"Project1"];
+    
+    [ProjectList addObject:NewProject];
+    
+    [NewProject setProjectName:@"Project1"];
+    
+    [ProjectList addObject:NewProject];
+    
+    [NewProject setProjectName:@"Project1"];
+    
+    [ProjectList addObject:NewProject];
+    
+    
+    
+    //Photos = [NSArray arrayWithObjects:@"angry_birds_cake.jpg", @"creme_brelee.jpg", @"egg_benedict.jpg", @"full_breakfast.jpg", @"green_tea.jpg", @"ham_and_cheese_panini.jpg", @"ham_and_egg_sandwich.jpg", @"hamburger.jpg", @"instant_noodle_with_egg.jpg", @"japanese_noodle_with_pork.jpg", @"mushroom_risotto.jpg", @"noodle_with_bbq_pork.jpg", @"starbucks_coffee.jpg", @"thai_shrimp_cake.jpg", @"vegetable_curry.jpg", @"white_chocolate_donut.jpg", nil];
 
 	// Do any additional setup after loading the view.
 }
@@ -45,7 +98,7 @@ NSArray * Photos;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return Photos.count;
+    return ProjectList.count;
 }
 
 
@@ -56,9 +109,17 @@ NSArray * Photos;
 
     
     UIImageView *recipeImageView = (UIImageView *)[cell viewWithTag:100];
-    recipeImageView.image = [UIImage imageNamed:[Photos objectAtIndex:indexPath.row]];
+    recipeImageView.image = [UIImage imageNamed:@"projectIcon.ico"];
+    
     UITextView *label =(UITextView *)[cell viewWithTag:200];
-    label.text=@"First Project";
+    label.text =[[ProjectList objectAtIndex:indexPath.row ] ProjectName];
+    
+   // [[ProjectList objectAtIndex:indexPath.row] setProjectIndex:indexPath.row];
+    
+    
+    
+    
+    
   //  cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo-frame.png"]];
     
     return cell;
