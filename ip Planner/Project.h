@@ -7,10 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Netwok.h"
+#import "ip.h"
 
 @interface Project : NSObject
 
 @property NSString  * ProjectName;
-@property NSInteger  * ProjectIndex;
+@property NSMutableArray * NetworkList ;
+@property ip * NetworkIp;
+
+
+
+
+
 
 @end

@@ -9,6 +9,7 @@
 #import "Project.h"
 
 @implementation Project
-@synthesize ProjectIndex,ProjectName  ;
+@synthesize ProjectName,NetworkList,NetworkIp  ;
+
 
 @end

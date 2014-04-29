@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--Project View Controller - list-->
+        <!--Project List View Controller - list-->
         <scene sceneID="vYt-iy-nr7">
             <objects>
-                <collectionViewController autoresizesArchivedViewToFullSize="NO" id="ry1-Sf-EXT" customClass="ProjectViewController" sceneMemberID="viewController">
+                <collectionViewController autoresizesArchivedViewToFullSize="NO" id="ry1-Sf-EXT" customClass="ProjectListViewController" sceneMemberID="viewController">
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="DWb-ld-Lrt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -39,7 +39,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <segue destination="Dtw-co-2bV" kind="modal" id="BlK-De-QVM"/>
+                                    <segue destination="Dtw-co-2bV" kind="modal" identifier="NetworkDetails" id="wx6-aj-28n"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -108,10 +108,10 @@
             </objects>
             <point key="canvasLocation" x="1809" y="152"/>
         </scene>
-        <!--View Controller - New Network-->
+        <!--Add To Network List View Controller - New Network-->
         <scene sceneID="9WE-Ke-brT">
             <objects>
-                <viewController id="gAy-87-mjf" sceneMemberID="viewController">
+                <viewController id="gAy-87-mjf" customClass="AddToNetworkListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fTq-eA-Utm"/>
                         <viewControllerLayoutGuide type="bottom" id="dyO-PA-dFO"/>
@@ -129,10 +129,10 @@
             </objects>
             <point key="canvasLocation" x="2425" y="-449"/>
         </scene>
-        <!--View Controller - IP Rnage-->
+        <!--Ip View Controller - IP Rnage-->
         <scene sceneID="xLM-tU-gyH">
             <objects>
-                <viewController id="FaW-cA-xXL" sceneMemberID="viewController">
+                <viewController id="FaW-cA-xXL" customClass="ipViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2Uk-5L-h36"/>
                         <viewControllerLayoutGuide type="bottom" id="0vp-g6-Mug"/>
@@ -217,19 +217,20 @@
                     <navigationItem key="navigationItem" title="IP Rnage" id="Xj5-mU-cfK">
                         <barButtonItem key="leftBarButtonItem" systemItem="organize" id="eOG-Lg-mBh">
                             <connections>
-                                <segue destination="g9F-9j-pcQ" kind="modal" id="Jaz-H4-U5d"/>
+                                <segue destination="TPz-UP-Y5V" kind="unwind" unwindAction="returnFromNetworkDetail:" id="8A4-4w-1QL"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SrQ-bB-zvG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="TPz-UP-Y5V" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1817" y="857"/>
         </scene>
-        <!--View Controller - Edit Network-->
+        <!--Display Network View Controller - Edit Network-->
         <scene sceneID="Cjf-Pu-Pfw">
             <objects>
-                <viewController id="kTc-ry-6Du" sceneMemberID="viewController">
+                <viewController id="kTc-ry-6Du" customClass="DisplayNetworkViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="900-Db-w0w"/>
                         <viewControllerLayoutGuide type="bottom" id="F5Q-pQ-7He"/>
@@ -251,10 +252,10 @@
             </objects>
             <point key="canvasLocation" x="2407" y="316"/>
         </scene>
-        <!--View Controller-->
+        <!--Edit Network View Controller-->
         <scene sceneID="aKq-i9-hRI">
             <objects>
-                <viewController id="6zy-3L-fc7" sceneMemberID="viewController">
+                <viewController id="6zy-3L-fc7" customClass="EditNetworkViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EKq-cw-IDG"/>
                         <viewControllerLayoutGuide type="bottom" id="yFe-RG-Pe2"/>
@@ -272,10 +273,10 @@
             </objects>
             <point key="canvasLocation" x="2826" y="309"/>
         </scene>
-        <!--Table View Controller - Network Map-->
+        <!--Network Map View Controller - Network Map-->
         <scene sceneID="Hyf-i2-6IJ">
             <objects>
-                <tableViewController id="4Fz-Ud-TZR" sceneMemberID="viewController">
+                <tableViewController id="4Fz-Ud-TZR" customClass="NetworkMapViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="FsZ-at-BZp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -301,10 +302,10 @@
             </objects>
             <point key="canvasLocation" x="2431" y="1004"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Project View Controller-->
         <scene sceneID="3X7-v1-AKk">
             <objects>
-                <viewController id="TtX-bB-YrK" sceneMemberID="viewController">
+                <viewController id="TtX-bB-YrK" customClass="AddProjectViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xLt-53-cV8"/>
                         <viewControllerLayoutGuide type="bottom" id="weD-m0-R5i"/>
@@ -312,13 +313,36 @@
                     <view key="view" contentMode="scaleToFill" id="7Nh-kq-Eqm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tr3-42-eQY">
+                                <rect key="frame" x="20" y="200" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Project Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MBu-fN-omm">
+                                <rect key="frame" x="108" y="123" width="105" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="PxJ-HS-Wcb">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="CLs-y7-KOY"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="CLs-y7-KOY">
+                            <connections>
+                                <segue destination="yrh-sa-EY5" kind="unwind" unwindAction="AddNewProject:" id="OAh-of-yNa"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="InputProjectName" destination="Tr3-42-eQY" id="kTH-bq-mf9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CTq-YA-8VU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="yrh-sa-EY5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="682" y="-371"/>
         </scene>
@@ -359,10 +383,10 @@
             </objects>
             <point key="canvasLocation" x="1231" y="99"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Customtab View Controller-->
         <scene sceneID="OOg-KB-uJT">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Dtw-co-2bV" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Dtw-co-2bV" customClass="customtabViewController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="XPa-gF-7Wg"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -371,18 +395,18 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="r4f-ts-ywZ" kind="relationship" relationship="viewControllers" id="iJ7-7M-xPS"/>
-                        <segue destination="7S3-dC-RZz" kind="relationship" relationship="viewControllers" id="muS-au-jE6"/>
+                        <segue destination="7S3-dC-RZz" kind="relationship" relationship="viewControllers" id="5d4-AX-Gh2"/>
+                        <segue destination="r4f-ts-ywZ" kind="relationship" relationship="viewControllers" id="OlB-LA-UUR"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Thc-nt-4WU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="639" y="345"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Ip Navigation View Controller-->
         <scene sceneID="agw-bp-S7k">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="r4f-ts-ywZ" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="r4f-ts-ywZ" customClass="ipNavigationViewController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="contacts" id="Szr-k4-hCt"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ayx-re-rhl">
@@ -391,7 +415,8 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="FaW-cA-xXL" kind="relationship" relationship="rootViewController" id="54U-af-h6p"/>
+                        <outlet property="delegate" destination="Szr-k4-hCt" id="jPR-f7-x9q"/>
+                        <segue destination="FaW-cA-xXL" kind="relationship" relationship="rootViewController" id="7DP-47-3JA"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d5A-Vx-lId" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -404,7 +429,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="Md4-t6-isA"/>
-    </inferredMetricsTieBreakers>
 </document>

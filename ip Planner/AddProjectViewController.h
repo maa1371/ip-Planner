@@ -1,5 +1,5 @@
 //
-//  NetworkListViewController.h
+//  AddProjectViewController.h
 //  ip Planner
 //
 //  Created by Mohammad Amin Ansari on 4/28/14.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NetworkListViewController : UITableViewController
+@interface AddProjectViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITextField *InputProjectName;
+
 
 @end

@@ -1,5 +1,5 @@
 //
-//  NetworkListViewController.h
+//  EditNetworkViewController.h
 //  ip Planner
 //
 //  Created by Mohammad Amin Ansari on 4/28/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NetworkListViewController : UITableViewController
+@interface EditNetworkViewController : UIViewController
 
 @end

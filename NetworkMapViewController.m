@@ -1,18 +1,18 @@
 //
-//  NetworkListViewController.m
+//  NetworkMapViewController.m
 //  ip Planner
 //
 //  Created by Mohammad Amin Ansari on 4/28/14.
 //  Copyright (c) 2014 Mohammad Amin Ansari. All rights reserved.
 //
 
-#import "NetworkListViewController.h"
+#import "NetworkMapViewController.h"
 
-@interface NetworkListViewController ()
+@interface NetworkMapViewController ()
 
 @end
 
-@implementation NetworkListViewController
+@implementation NetworkMapViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
