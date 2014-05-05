@@ -12,9 +12,9 @@
 
 @interface Project : NSObject
 
-@property NSString  * ProjectName;
-@property NSMutableArray * NetworkList ;
-@property ip * NetworkIp;
+@property (strong,nonatomic) NSString  * ProjectName;
+@property (strong,nonatomic) NSMutableArray * NetworkList ;
+@property (strong,nonatomic) ip * NetworkIp;
 
 
 

@@ -11,9 +11,9 @@
 @interface Netwok : NSObject
 
 
-@property NSString *NetworkName;
-@property NSNumber *clients;
-@property  NSNumber *Servers;
+@property (strong,nonatomic) NSString *NetworkName;
+@property (strong,nonatomic) NSNumber *clients;
+@property  (strong,nonatomic) NSNumber *Servers;
 //-(void) ShowNetworkMap;
 
 @end

@@ -14,7 +14,8 @@
 @interface NetworkListViewController : UITableViewController
 
 
-@property (strong,nonatomic) NSMutableArray * ProjectList;
+@property (strong,nonatomic) Project * currentProject;
+@property (strong,nonatomic) NSMutableArray * projectList;
 
 @property (nonatomic, strong) NSString *selectedNation;
 

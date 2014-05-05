@@ -15,9 +15,10 @@
 
 
 @property (strong,nonatomic) NSMutableArray * ProjectList;
+@property   (strong,nonatomic) NSIndexPath * currentIndex;
 
 -(IBAction) AddNewProject:(UIStoryboardSegue*) segue;
--(IBAction) returnFromNetworkDetail:(UIStoryboardSegue*) segue;
+
 
 
 @end

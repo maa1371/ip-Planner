@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface AddToNetworkListViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITextField *networkName;
+@property (weak, nonatomic) IBOutlet UITextField *clientNumber;
+@property (weak, nonatomic) IBOutlet UITextField *serverNumber;
+- (IBAction)saveNewNetwork:(id)sender;
 
 @end

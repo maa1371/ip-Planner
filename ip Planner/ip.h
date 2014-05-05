@@ -10,7 +10,7 @@
 
 @interface ip : NSObject
 
-@property  NSNumber   *ip1,*ip2,*ip3,*ip4,*SubnetMask;
+@property (strong,nonatomic) NSNumber   *ip1,*ip2,*ip3,*ip4,*SubnetMask;
 
 -(void) setIP: (NSNumber *) part1 next2:(NSNumber *) part2 next3:(NSNumber *) part3 next4:(NSNumber *) part4 subnet:(NSNumber *) subnet;
 

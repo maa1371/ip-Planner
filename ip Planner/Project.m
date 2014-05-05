@@ -11,5 +11,14 @@
 @implementation Project
 @synthesize ProjectName,NetworkList,NetworkIp  ;
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        NetworkList=[[NSMutableArray alloc]init];
+        NetworkIp=[[ip alloc]init];
+    }
+    return self;
+}
 
 @end

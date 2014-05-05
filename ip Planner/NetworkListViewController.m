@@ -10,15 +10,30 @@
 #import "Netwok.h"
 #import "Project.h"
 #import "ProjectListViewController.h"
-
+#import "AddToNetworkListViewController.h"
+#import "DisplayNetworkViewController.h"
 @interface NetworkListViewController ()
 @end
 
 @implementation NetworkListViewController
 
-@synthesize ProjectList;
+@synthesize currentProject,projectList;
 
-
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if ([segue.identifier isEqualToString:@"EditNetwork"]) {
+  
+        DisplayNetworkViewController *DVC=[segue destinationViewController];
+       
+        NSIndexPath *index =[self.tableView indexPathForSelectedRow];
+      
+        DVC.currentNetwork=[[currentProject NetworkList] objectAtIndex:index.row];
+        
+        // DVC.clientNumber.text=[[[currentProject NetworkList] objectAtIndex:index.row]clients];
+       // [DVC.serverNumber.text]=[[[currentProject NetworkList] objectAtIndex:index.row]clients];
+        
+    }
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -32,7 +47,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"%D",ProjectList.count);
+    NSLog(@"currnt project Network list count::%d ",[[currentProject NetworkList]count]);
+
+    //Project *initProject=[[Project alloc]init];
+    //[ProjectList addObject:initProject];
+    
+  //  NSLog(@"%D",[ProjectList objectAtIndex:0].count);
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,7 +72,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return ProjectList.count;
+  //  NSLog(@"currnt project Network list count::%d ",[[currentProject NetworkList]count]);
+
+    return [[currentProject NetworkList] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -60,12 +82,11 @@
     static NSString *CellIdentifier = @"Netwrokid";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    Project *currentProject=[ProjectList objectAtIndex:0];
+   // Project *currentProject=[ProjectList objectAtIndex:0];
     
-    Netwok  *currentNetwork=[[currentProject NetworkList] objectAtIndex:indexPath.row];
     
-    [cell.textLabel setText:[currentNetwork NetworkName ]];
-    NSLog(@"name %d" ,[[currentNetwork clients]intValue]);
+    [cell.textLabel setText:[[[currentProject NetworkList] objectAtIndex:indexPath.row]NetworkName]];
+  //  NSLog(@"name %@" ,[[[currentProject NetworkList] objectAtIndex:indexPath.row]NetworkName]);
     
     //[cell.textLabel setText:@"amin"];
     
@@ -125,5 +146,89 @@
 }
 
  */
+-(IBAction) SaveNewNetwork:(UIStoryboardSegue*) segue{
+    
+    AddToNetworkListViewController *ATNLVC=[segue sourceViewController];
+    Netwok *newNetwork=[[Netwok alloc]init];
+    
+    newNetwork.NetworkName=[[ATNLVC networkName]text];
+    
+    
+    NSString *newcliens=[[ATNLVC clientNumber]text];
+    int clientNumber=[newcliens intValue];
+    
+    NSString *newservers=[[ATNLVC serverNumber]text];
+    int serverNumber=[newservers intValue];
+    
+    newNetwork.clients=[NSNumber numberWithInteger:clientNumber];
+    newNetwork.Servers=[NSNumber numberWithInteger:serverNumber];
+    
+    
+    
+    
+    
+    [[currentProject NetworkList]addObject:newNetwork];
+    
+    
+    
+    [ self.tableView reloadData];
+    
+    int index;
+    index=[projectList indexOfObject:currentProject];
+    [projectList replaceObjectAtIndex:index withObject:currentProject];
+    [ATNLVC dismissViewControllerAnimated:YES completion: nil];
+    
+    
+}
 
+-(IBAction) EditNewNetwork:(UIStoryboardSegue*) segue{
+    
+    DisplayNetworkViewController *DNVC=[segue sourceViewController];
+    
+    
+    [DNVC currentNetwork].NetworkName=[DNVC NetworkName].text;
+    [DNVC currentNetwork].clients=[NSNumber numberWithInt:[DNVC clientNumber].text.intValue];
+    [DNVC currentNetwork].Servers=[NSNumber numberWithInt:[DNVC serverNumber].text.intValue];
+    
+     Netwok *newNetwork=[[Netwok alloc]init];
+    newNetwork= DNVC.currentNetwork;
+//    newNetwork.NetworkName=[[DNVC NetworkName]text];
+//    
+//    
+//    NSString *newcliens=[[DNVC clientNumber]text];
+//    int clientNumber=[newcliens intValue];
+//    
+//    NSString *newservers=[[DNVC serverNumber]text];
+//    int serverNumber=[newservers intValue];
+//    
+//    newNetwork.clients=[NSNumber numberWithInteger:clientNumber];
+//    newNetwork.Servers=[NSNumber numberWithInteger:serverNumber];
+//    
+    
+    
+    int path;
+    path=[[currentProject NetworkList]indexOfObject:newNetwork];
+
+    [[currentProject NetworkList] replaceObjectAtIndex:path withObject:newNetwork];
+    
+    
+    
+    
+    [self.tableView reloadData];
+    
+    int index;
+    index=[projectList indexOfObject:currentProject];
+    [projectList replaceObjectAtIndex:index withObject:currentProject];
+    NSLog(@"IP:: %@",[[currentProject NetworkIp ]ip1]);
+    
+    [[self navigationController] popViewControllerAnimated:YES];
+    [self performSelector:@selector(delayedPresent:) withObject:DNVC afterDelay:0.6];
+    
+
+}
+
+- (void)delayedPresent:(UIViewController *)controller
+{
+    [controller dismissViewControllerAnimated:YES completion: nil];
+}
 @end

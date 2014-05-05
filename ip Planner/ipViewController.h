@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Project.h"
 
-@interface ipViewController : UIViewController
+@interface ipViewController : UIViewController <UIPickerViewDataSource,UIPickerViewDelegate>
 @property NSMutableArray * ProjectList;
+@property Project * currentProject;
+
+@property (weak, nonatomic) IBOutlet UIPickerView *picker;
 
 @end

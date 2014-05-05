@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Netwok.h"
 
 @interface DisplayNetworkViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITextField *NetworkName;
+@property (weak, nonatomic) IBOutlet UITextField *clientNumber;
+@property (weak, nonatomic) IBOutlet UITextField *serverNumber;
 
+@property (strong,nonatomic) Netwok *currentNetwork;
 @end

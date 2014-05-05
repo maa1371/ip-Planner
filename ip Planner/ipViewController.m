@@ -14,7 +14,35 @@
 
 @implementation ipViewController
 
-@synthesize ProjectList;
+@synthesize ProjectList ,currentProject;
+
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView;
+{
+    return 5;
+}
+// returns the # of rows in each component..
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component;
+{
+    if (component==4) {
+        return 33;
+
+    }
+    return 256;
+}
+
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row   forComponent:(NSInteger)component
+{
+    NSNumber *number =[NSNumber numberWithInt:row];
+    NSString *item=[number stringValue];
+    return item;
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row   inComponent:(NSInteger)component
+{
+    
+}
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,17 +57,14 @@
 {
     [super viewDidLoad];
 
-    NSLog(@":-( %d",ProjectList.count);
-    
-    //myApp =[[App alloc]init];
-    
-    
-  ///  Project *new=[[Project alloc]init];
-   // [ProjectList addObject:new];
-//	[ProjectList addObject:new];
-//	[ProjectList addObject:new];
-	// Do any additional setup after loading the view.
-}
+    NSLog(@":-( %d",[[currentProject NetworkList]count]);
+    [self.picker selectRow:192 inComponent:0 animated:YES];
+    [self.picker selectRow:168 inComponent:1 animated:YES];
+    [self.picker selectRow:1 inComponent:2 animated:YES];
+    [self.picker selectRow:0 inComponent:3 animated:YES];
+    [self.picker selectRow:24 inComponent:4 animated:YES];
+
+   }
 
 - (void)didReceiveMemoryWarning
 {

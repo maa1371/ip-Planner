@@ -14,6 +14,8 @@
 
 @implementation DisplayNetworkViewController
 
+@synthesize NetworkName,currentNetwork,clientNumber,serverNumber;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -26,7 +28,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
+    self.NetworkName.text =[self.currentNetwork NetworkName];
+    self.clientNumber.text =[[self.currentNetwork clients]stringValue];
+    self.serverNumber.text =[[self.currentNetwork Servers]stringValue];
+    
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning

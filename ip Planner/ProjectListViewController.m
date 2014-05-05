@@ -24,16 +24,13 @@
 
 @implementation ProjectListViewController
 
-@synthesize ProjectList ;
-
-
-
+@synthesize ProjectList ,currentIndex;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-  
    
+    currentIndex=[[NSIndexPath alloc]init];
     ProjectList =[[NSMutableArray alloc]init];
    
     //init project sample
@@ -82,11 +79,14 @@
         ipViewController *IPVC=[[IPNVC viewControllers]objectAtIndex:0];
         
         
-        
+        currentIndex =[[self.collectionView indexPathsForSelectedItems]objectAtIndex:0];
+       
         NLVC.ProjectList=ProjectList;
-        IPVC.ProjectList=ProjectList;
+        NLVC.currentProject=[ProjectList objectAtIndex:[currentIndex row]];
         
-
+        IPVC.ProjectList=ProjectList;
+        IPVC.currentProject=[ProjectList objectAtIndex:[currentIndex row]];
+        
         
         
     }
@@ -120,13 +120,27 @@
     
 }
 
--(IBAction) returnFromNetworkDetail:(UIStoryboardSegue*) segue{
+-(IBAction) returnFromipViewController:(UIStoryboardSegue*) segue{
     
-   
+    
     ipViewController    * TVC =[segue sourceViewController];
     
     ProjectList=TVC.ProjectList;
- 
+    
+    
+    
+    [self.collectionView  reloadData ]   ;
+    
+    
+    
+}
+-(IBAction) returnFromNetworkListViewController:(UIStoryboardSegue*) segue{
+    
+    
+    NetworkListViewController    * NLVC =[segue sourceViewController];
+    
+    ProjectList=NLVC.projectList;
+    
     
     
     [self.collectionView  reloadData ]   ;
@@ -177,5 +191,6 @@
     
     return cell;
 }
+
 
 @end
