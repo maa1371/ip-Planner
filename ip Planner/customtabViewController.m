@@ -8,13 +8,15 @@
 
 #import "customtabViewController.h"
 #import "ipNavigationViewController.h"
-@interface customtabViewController () <UITabBarControllerDelegate>
+@interface customtabViewController () 
 
 @end
 
 @implementation customtabViewController
 
 @synthesize ProjectList;
+
+
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
 {
@@ -26,11 +28,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    ProjectList=[[NSMutableArray alloc]init];
-    self.delegate=self;
-
-    NSLog(@"customVC project list count:: %d",ProjectList.count);
-	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning

@@ -14,7 +14,6 @@
 @property NSString *NetworkName;
 @property NSNumber *clients;
 @property  NSNumber *Servers;
-
 //-(void) ShowNetworkMap;
 
 @end

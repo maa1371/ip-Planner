@@ -10,6 +10,11 @@
 
 @implementation AppDelegate
 
+-(void)doSomethingWithString:(NSString*)parameter {
+    
+    self.info=parameter;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     

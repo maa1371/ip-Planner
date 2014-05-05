@@ -7,12 +7,18 @@
 //
 
 #import "NetworkListViewController.h"
+#import "Netwok.h"
+#import "Project.h"
+#import "ProjectListViewController.h"
 
 @interface NetworkListViewController ()
-
 @end
 
 @implementation NetworkListViewController
+
+@synthesize ProjectList;
+
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -26,12 +32,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    NSLog(@"%D",ProjectList.count);
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,22 +45,30 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return ProjectList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"Netwrokid";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    Project *currentProject=[ProjectList objectAtIndex:0];
+    
+    Netwok  *currentNetwork=[[currentProject NetworkList] objectAtIndex:indexPath.row];
+    
+    [cell.textLabel setText:[currentNetwork NetworkName ]];
+    NSLog(@"name %d" ,[[currentNetwork clients]intValue]);
+    
+    //[cell.textLabel setText:@"amin"];
+    
     
     // Configure the cell...
     

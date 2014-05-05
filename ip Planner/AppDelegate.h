@@ -11,5 +11,8 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) NSString *info;
+
+-(void)doSomethingWithString:(NSString*)parameter;
 
 @end

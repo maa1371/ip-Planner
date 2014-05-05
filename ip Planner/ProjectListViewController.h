@@ -7,14 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "App.h"
 
-@interface ProjectListViewController : UICollectionViewController
+#import "Project.h"
 
 
-@property NSMutableArray * ProjectList;
+@interface ProjectListViewController : UICollectionViewController 
+
+
+@property (strong,nonatomic) NSMutableArray * ProjectList;
 
 -(IBAction) AddNewProject:(UIStoryboardSegue*) segue;
 -(IBAction) returnFromNetworkDetail:(UIStoryboardSegue*) segue;
+
 
 @end

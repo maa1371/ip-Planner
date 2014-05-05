@@ -8,7 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "Project.h"
+#import "ProjectListViewController.h"
 
-@interface customtabViewController : UITabBarController
-@property   NSMutableArray *ProjectList;
+@protocol PlayerDetailsViewControllerDelegate <NSObject>
+
+- (void)transferProject:(ProjectListViewController *)controller didAddProject:(Project *)project;
+
+@end
+
+@interface customtabViewController : UITabBarController 
+@property   (strong,nonatomic) NSMutableArray *ProjectList;
+//@property (nonatomic, weak) id <PlayerDetailsViewControllerDelegate> delegate;
+
 @end

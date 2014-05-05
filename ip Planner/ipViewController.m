@@ -28,9 +28,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    ProjectList =[[NSMutableArray alloc]init];
+
+    NSLog(@":-( %d",ProjectList.count);
     
-    NSLog(@"ipVC project list count :: %d",ProjectList.count);
     //myApp =[[App alloc]init];
     
     

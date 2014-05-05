@@ -43,9 +43,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    ProjectList =[[NSMutableArray alloc]init];
-    NSLog(@"ipNavigationViewController ip nav %d",ProjectList.count);
-
+   
 	// Do any additional setup after loading the view.
 }
 

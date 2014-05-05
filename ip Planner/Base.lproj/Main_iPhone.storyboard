@@ -39,7 +39,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <segue destination="Dtw-co-2bV" kind="modal" identifier="NetworkDetails" id="wx6-aj-28n"/>
+                                    <segue destination="Dtw-co-2bV" kind="modal" identifier="NetworkDetails" id="8zB-70-CNc"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -91,7 +91,7 @@
                     <navigationItem key="navigationItem" title="Network List" id="tzx-iI-njW">
                         <barButtonItem key="leftBarButtonItem" systemItem="organize" id="DwT-eZ-Eom">
                             <connections>
-                                <segue destination="g9F-9j-pcQ" kind="modal" id="Md4-t6-isA"/>
+                                <segue destination="p7h-5a-rbh" kind="unwind" unwindAction="returnFromNetworkDetail:" id="E20-yt-BAh"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="add" id="DC8-f3-OrJ">
@@ -105,6 +105,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vwJ-0O-GTZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="p7h-5a-rbh" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1809" y="152"/>
         </scene>
@@ -362,13 +363,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GJo-TM-WHB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-522" y="-10"/>
+            <point key="canvasLocation" x="-366" y="-53"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Ip Navigation View Controller - NetworkList-->
         <scene sceneID="ESp-ok-W6p">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7S3-dC-RZz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="mostViewed" id="htB-gG-se9"/>
+                <navigationController title="NetworkList" automaticallyAdjustsScrollViewInsets="NO" id="7S3-dC-RZz" customClass="ipNavigationViewController" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="recents" id="htB-gG-se9"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="GW4-VM-b4Y">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -395,6 +396,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <outlet property="delegate" destination="84C-n9-Tkr" id="8bg-oc-r8u"/>
                         <segue destination="7S3-dC-RZz" kind="relationship" relationship="viewControllers" id="5d4-AX-Gh2"/>
                         <segue destination="r4f-ts-ywZ" kind="relationship" relationship="viewControllers" id="OlB-LA-UUR"/>
                     </connections>
@@ -415,7 +417,6 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <outlet property="delegate" destination="Szr-k4-hCt" id="jPR-f7-x9q"/>
                         <segue destination="FaW-cA-xXL" kind="relationship" relationship="rootViewController" id="7DP-47-3JA"/>
                     </connections>
                 </navigationController>

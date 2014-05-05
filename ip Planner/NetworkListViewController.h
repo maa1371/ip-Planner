@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Project.h"
+
+
 
 @interface NetworkListViewController : UITableViewController
+
+
+@property (strong,nonatomic) NSMutableArray * ProjectList;
+
+@property (nonatomic, strong) NSString *selectedNation;
+
+
 
 @end
