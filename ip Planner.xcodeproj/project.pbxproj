@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E801C77619181B3100111B3F /* mapNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E801C77519181B3100111B3F /* mapNavViewController.m */; };
 		E81761FF190EAF7E003FBBDC /* ipNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E81761FE190EAF7E003FBBDC /* ipNavigationViewController.m */; };
 		E8176208190EC3D0003FBBDC /* customtabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8176207190EC3D0003FBBDC /* customtabViewController.m */; };
 		E82E737B190AC72B00E9B510 /* ProjectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E737A190AC72B00E9B510 /* ProjectIcon.png */; };
@@ -49,6 +50,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E801C77419181B3100111B3F /* mapNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mapNavViewController.h; sourceTree = "<group>"; };
+		E801C77519181B3100111B3F /* mapNavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mapNavViewController.m; sourceTree = "<group>"; };
 		E81761FD190EAF7E003FBBDC /* ipNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ipNavigationViewController.h; sourceTree = "<group>"; };
 		E81761FE190EAF7E003FBBDC /* ipNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ipNavigationViewController.m; sourceTree = "<group>"; };
 		E8176206190EC3D0003FBBDC /* customtabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customtabViewController.h; sourceTree = "<group>"; };
@@ -121,6 +124,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E801C77719181B9F00111B3F /* navigation */ = {
+			isa = PBXGroup;
+			children = (
+				E801C77419181B3100111B3F /* mapNavViewController.h */,
+				E801C77519181B3100111B3F /* mapNavViewController.m */,
+			);
+			name = navigation;
+			sourceTree = "<group>";
+		};
 		E8EDCE9D19176C2800C0E50A /* project list */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,6 +218,7 @@
 		E8EDCEA519176E3100C0E50A /* NetworkMap */ = {
 			isa = PBXGroup;
 			children = (
+				E801C77719181B9F00111B3F /* navigation */,
 				E8DF383A190E8AF400C98F07 /* NetworkMapViewController.h */,
 				E8DF383B190E8AF400C98F07 /* NetworkMapViewController.m */,
 			);
@@ -420,6 +433,7 @@
 				E8DF383C190E8AF400C98F07 /* NetworkMapViewController.m in Sources */,
 				E84174B3190E896D00228045 /* DisplayNetworkViewController.m in Sources */,
 				E8F2DB17190AA6DA00CA760A /* AppDelegate.m in Sources */,
+				E801C77619181B3100111B3F /* mapNavViewController.m in Sources */,
 				E8417495190E793B00228045 /* ip.m in Sources */,
 				E84174A7190E880600228045 /* ipViewController.m in Sources */,
 				E84174B0190E892D00228045 /* EditNetworkViewController.m in Sources */,

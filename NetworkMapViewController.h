@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Project.h"
 
 @interface NetworkMapViewController : UITableViewController
+
+@property (nonatomic,strong) Project *currentProject;
 
 @end
