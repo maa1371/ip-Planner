@@ -206,8 +206,8 @@
                                     <outlet property="delegate" destination="FaW-cA-xXL" id="Lfs-z5-BNe"/>
                                 </connections>
                             </pickerView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Your Network IP range" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="byq-TQ-9qo">
-                                <rect key="frame" x="48" y="85" width="225" height="29"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Your Network IP range" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="225" translatesAutoresizingMaskIntoConstraints="NO" id="byq-TQ-9qo">
+                                <rect key="frame" x="49" y="85" width="225" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -224,11 +224,12 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Map" id="wyJ-IS-oVX">
                             <connections>
-                                <segue destination="u9n-fG-yzW" kind="modal" identifier="NetworkMap" id="qCY-ei-3C7"/>
+                                <segue destination="4Fz-Ud-TZR" kind="push" identifier="NetworkMap" id="ABL-W0-3Ul"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="MapButton" destination="wyJ-IS-oVX" id="O6E-mx-6yn"/>
                         <outlet property="picker" destination="fPT-KC-Tco" id="sQG-eY-61o"/>
                     </connections>
                 </viewController>
@@ -318,7 +319,7 @@
             <objects>
                 <tableViewController id="4Fz-Ud-TZR" customClass="NetworkMapViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="FsZ-at-BZp">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -340,7 +341,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eyn-cp-SGA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2957" y="1004"/>
+            <point key="canvasLocation" x="2460" y="998"/>
         </scene>
         <!--Add Project View Controller-->
         <scene sceneID="3X7-v1-AKk">
@@ -462,24 +463,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d5A-Vx-lId" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1219" y="881"/>
-        </scene>
-        <!--Ip Navigation View Controller-->
-        <scene sceneID="HWC-AK-GeI">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="u9n-fG-yzW" customClass="ipNavigationViewController" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bkq-9Y-xZ3">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="4Fz-Ud-TZR" kind="relationship" relationship="rootViewController" id="pwv-vZ-jyS"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fnF-TK-5W1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2431" y="1004"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
