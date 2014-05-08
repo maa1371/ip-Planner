@@ -179,7 +179,7 @@ NSMutableArray *binarryIP;
     ip3=ip3 & subnet2;
     ip4=ip4 & subnet1;
     
-    NSLog(@"ip:: %d/%d/%d/%d",ip1,ip2,ip3,ip4);
+    NSLog(@"ip aval shabake:: %d/%d/%d/%d",ip1,ip2,ip3,ip4);
     NSLog(@"subnet:: %d/%d/%d/%d",subnet4,subnet3,subnet2,subnet1);
     
     
