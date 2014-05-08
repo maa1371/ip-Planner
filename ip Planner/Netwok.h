@@ -7,13 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "ip.h"
 @interface Netwok : NSObject
 
 
 @property (strong,nonatomic) NSString *NetworkName;
 @property (strong,nonatomic) NSNumber *clients;
 @property  (strong,nonatomic) NSNumber *Servers;
+@property (strong,nonatomic) ip * eachNetworkIP;
+
+
 //-(void) ShowNetworkMap;
 
 @end

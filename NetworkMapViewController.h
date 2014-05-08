@@ -12,5 +12,6 @@
 @interface NetworkMapViewController : UITableViewController
 
 @property (nonatomic,strong) Project *currentProject;
+@property (nonatomic,strong) NSMutableArray * IPaval;
 
 @end

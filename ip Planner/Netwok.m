@@ -11,7 +11,7 @@
 @implementation Netwok
 
 
-@synthesize NetworkName,clients,Servers;
+@synthesize NetworkName,clients,Servers,eachNetworkIP;
 
 //-(void)ShowNetworkMap{
     

@@ -21,5 +21,8 @@
     SubnetMask=subnet;
     
 }
+-(void)setSub:(NSNumber *)sub{
+    SubnetMask=sub;
+}
 
 @end

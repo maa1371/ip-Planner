@@ -19,6 +19,8 @@
 @synthesize ProjectList ,currentProject;
 
 NSMutableArray *binarryIP;
+int ip1,ip2,ip3,ip4,subnet1,subnet2,subnet3,subnet4,subnet;
+
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
@@ -27,6 +29,17 @@ NSMutableArray *binarryIP;
       //  NetworkMapViewController *NMVC=[MNVC.viewControllers objectAtIndex:0];
         NetworkMapViewController *NMVC=[segue destinationViewController];
         NMVC.currentProject=currentProject;
+        NSNumber *ip11=[NSNumber numberWithInt:ip4];
+        NSNumber *ip22=[NSNumber numberWithInt:ip3];
+        NSNumber *ip33=[NSNumber numberWithInt:ip2];
+        NSNumber *ip44=[NSNumber numberWithInt:ip1];
+        NSNumber *subnet55=[NSNumber numberWithInt:subnet];
+        NSMutableArray *ipAval=[[NSMutableArray alloc]initWithObjects:ip11,ip22,ip33,ip44,subnet55 ,nil];
+        
+        NMVC.IPaval=ipAval;
+        
+        
+        NSLog(@"%d,%d,%d,%d",[ip11 intValue],[ip22 intValue],[ip33 intValue],[ip44 intValue]);
         
     }
    
@@ -133,7 +146,6 @@ NSMutableArray *binarryIP;
 //    NSLog(@"%@",[natijeint objectAtIndex:1]);
    
     
-    int ip1,ip2,ip3,ip4,subnet1,subnet2,subnet3,subnet4,subnet;
     subnet=[[[currentProject NetworkIp] SubnetMask]intValue];
     
     
