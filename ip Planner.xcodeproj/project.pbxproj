@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E801C77619181B3100111B3F /* mapNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E801C77519181B3100111B3F /* mapNavViewController.m */; };
+		E810EDF61921767D007671CE /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = E810EDF51921767D007671CE /* delete.png */; };
 		E81761FF190EAF7E003FBBDC /* ipNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E81761FE190EAF7E003FBBDC /* ipNavigationViewController.m */; };
 		E8176208190EC3D0003FBBDC /* customtabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8176207190EC3D0003FBBDC /* customtabViewController.m */; };
 		E82E737B190AC72B00E9B510 /* ProjectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E737A190AC72B00E9B510 /* ProjectIcon.png */; };
@@ -21,6 +22,7 @@
 		E84174AD190E887C00228045 /* AddToNetworkListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84174AC190E887C00228045 /* AddToNetworkListViewController.m */; };
 		E84174B0190E892D00228045 /* EditNetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84174AF190E892D00228045 /* EditNetworkViewController.m */; };
 		E84174B3190E896D00228045 /* DisplayNetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84174B2190E896D00228045 /* DisplayNetworkViewController.m */; };
+		E8638BCF19215D7B0096CDF7 /* photo-frame-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = E8638BCE19215D7B0096CDF7 /* photo-frame-selected.png */; };
 		E8A6BBEA190EC516006DE11A /* ProjectListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A6BBE9190EC516006DE11A /* ProjectListViewController.m */; };
 		E8DF383C190E8AF400C98F07 /* NetworkMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DF383B190E8AF400C98F07 /* NetworkMapViewController.m */; };
 		E8F2DB07190AA6DA00CA760A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8F2DB06190AA6DA00CA760A /* Foundation.framework */; };
@@ -52,6 +54,7 @@
 /* Begin PBXFileReference section */
 		E801C77419181B3100111B3F /* mapNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mapNavViewController.h; sourceTree = "<group>"; };
 		E801C77519181B3100111B3F /* mapNavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mapNavViewController.m; sourceTree = "<group>"; };
+		E810EDF51921767D007671CE /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
 		E81761FD190EAF7E003FBBDC /* ipNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ipNavigationViewController.h; sourceTree = "<group>"; };
 		E81761FE190EAF7E003FBBDC /* ipNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ipNavigationViewController.m; sourceTree = "<group>"; };
 		E8176206190EC3D0003FBBDC /* customtabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customtabViewController.h; sourceTree = "<group>"; };
@@ -77,6 +80,7 @@
 		E84174AF190E892D00228045 /* EditNetworkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditNetworkViewController.m; sourceTree = "<group>"; };
 		E84174B1190E896D00228045 /* DisplayNetworkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayNetworkViewController.h; sourceTree = "<group>"; };
 		E84174B2190E896D00228045 /* DisplayNetworkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayNetworkViewController.m; sourceTree = "<group>"; };
+		E8638BCE19215D7B0096CDF7 /* photo-frame-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo-frame-selected.png"; sourceTree = "<group>"; };
 		E8A6BBE9190EC516006DE11A /* ProjectListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectListViewController.m; sourceTree = "<group>"; };
 		E8DF383A190E8AF400C98F07 /* NetworkMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkMapViewController.h; path = ../NetworkMapViewController.h; sourceTree = "<group>"; };
 		E8DF383B190E8AF400C98F07 /* NetworkMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkMapViewController.m; path = ../NetworkMapViewController.m; sourceTree = "<group>"; };
@@ -302,6 +306,8 @@
 		E8F2DB0D190AA6DA00CA760A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E810EDF51921767D007671CE /* delete.png */,
+				E8638BCE19215D7B0096CDF7 /* photo-frame-selected.png */,
 				E82E737C190AC7E900E9B510 /* projectIcon.ico */,
 				E82E737A190AC72B00E9B510 /* ProjectIcon.png */,
 				E8F2DB0E190AA6DA00CA760A /* ip Planner-Info.plist */,
@@ -406,6 +412,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E810EDF61921767D007671CE /* delete.png in Resources */,
+				E8638BCF19215D7B0096CDF7 /* photo-frame-selected.png in Resources */,
 				E8F2DB1D190AA6DA00CA760A /* Main_iPad.storyboard in Resources */,
 				E8F2DB22190AA6DA00CA760A /* Images.xcassets in Resources */,
 				E82E737B190AC72B00E9B510 /* ProjectIcon.png in Resources */,

@@ -11,14 +11,18 @@
 #import "Project.h"
 
 
-@interface ProjectListViewController : UICollectionViewController 
-
+@interface ProjectListViewController : UICollectionViewController
 
 @property (strong,nonatomic) NSMutableArray * ProjectList;
 @property   (strong,nonatomic) NSIndexPath * currentIndex;
 
--(IBAction) AddNewProject:(UIStoryboardSegue*) segue;
 
+- (IBAction)editAction:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *ToDelete;
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *plusHidden;
 
 
 @end

@@ -26,13 +26,148 @@
 
 @synthesize ProjectList ,currentIndex;
 
+bool    replace;
+bool edithEnable;
+bool clickProper;
+NSMutableArray *cellSelected;
+UIBarButtonItem *deleteButton,*renameButton,*editButton,*addButton;
+int  myindex;
+
+
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    if(edithEnable)
+        {
+            [cellSelected addObject:[ProjectList objectAtIndex:indexPath.row]];
+            NSLog(@"counter1::%d",[cellSelected count]);
+            if ([cellSelected count]==0) {
+                deleteButton.enabled=NO;
+            }else{
+                deleteButton.enabled=YES;
+            }
+           
+            if ([cellSelected count]==1) {
+                
+                
+                renameButton.enabled=YES;
+            } else{
+                renameButton.enabled=NO;
+            }
+
+        }
+    
+    
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
+  
+    if(edithEnable)
+    {
+
+        [cellSelected removeObject:[ProjectList objectAtIndex:indexPath.row]];
+        NSLog(@"counter2::%d",[cellSelected count]);
+
+        if ([cellSelected count]==1) {
+         //   myindex=indexPath.row;
+            renameButton.enabled=YES;
+        } else{
+            renameButton.enabled=NO;
+            }
+        
+        if ([cellSelected count]==0) {
+            deleteButton.enabled=NO;
+        }else{
+            deleteButton.enabled=YES;
+        }
+        
+    }
+    
+    
+}
+
+-(void)addAction:(id)sender
+{
+    [self performSegueWithIdentifier:@"add" sender:sender];
+}
+-(void)deleteAction:(id)sender{
+    
+    for (int i=0; i<cellSelected.count; i++) {
+        [ProjectList removeObject:[cellSelected objectAtIndex:i]];
+        
+    }
+    deleteButton.enabled=NO;
+    renameButton.enabled=NO;
+    [cellSelected removeAllObjects];
+    [self.collectionView reloadData];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (buttonIndex==1) {
+        UITextField * alertTextField = [alertView textFieldAtIndex:0];
+        [[ProjectList objectAtIndex:myindex]setProjectName:alertTextField.text];
+        [self.collectionView reloadData];
+
+    }else{
+        [self.collectionView reloadData];
+
+    }
+    
+    // do whatever you want to do with this UITextField.
+}
+
+-(void)renameAction:(id)sender{
+    NSLog(@"index::%d",myindex);
+    
+    for (int i=0; i<[ProjectList count]; i++) {
+        if ([ProjectList objectAtIndex:i]==[cellSelected objectAtIndex:0]) {
+            myindex=i;
+            NSLog(@"%d",myindex);
+        }
+    }
+
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Edit Project Name" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil] ;
+   
+    alertView.tag = 2;
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [[alertView textFieldAtIndex:0]setText:[[ProjectList objectAtIndex:myindex]ProjectName]];
+    [alertView show];
+    
+   // [[ProjectList objectAtIndex:myindex]setProjectName:@"rename"];
+    [cellSelected removeAllObjects];
+    deleteButton.enabled=NO;
+    renameButton.enabled=NO;
+    
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    /////
+    deleteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteAction:)];
+    
+    
+    renameButton = [[UIBarButtonItem alloc] initWithTitle:(@"rename") style:UIBarButtonItemStyleBordered target:self action:@selector(renameAction:)];
+    
+    addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAction:)];
+    
+    
+    editButton = [[UIBarButtonItem alloc] initWithTitle:(@"edit") style:UIBarButtonItemStyleBordered target:self action:@selector(editAction:)];
+   
+    self.navigationItem.leftBarButtonItems = @[addButton];
+
+   /////
+    deleteButton.enabled=NO;
+    renameButton.enabled=NO;
    
     currentIndex=[[NSIndexPath alloc]init];
     ProjectList =[[NSMutableArray alloc]init];
-   
+    edithEnable=NO;
+    cellSelected=[[NSMutableArray alloc]init];
     //init project sample
     Project *new=[[Project alloc]init];
     [new setProjectName:@"sample Project"];
@@ -61,8 +196,65 @@
    // Do any additional setup after loading the view.
 }
 
+- (IBAction)editAction:(id)sender {
+    
+    if (edithEnable) {
+        
+        self.navigationItem.leftBarButtonItems = @[addButton];
+
+        // Deselect all selected items
+        for(NSIndexPath *indexPath in self.collectionView.indexPathsForSelectedItems) {
+            [self.collectionView deselectItemAtIndexPath:indexPath animated:NO];
+        }
+        
+        // Remove all items from selectedRecipes array
+        [cellSelected removeAllObjects];
+        
+        // Change the sharing mode to NO
+        self.collectionView.allowsMultipleSelection = NO;
+        self.editButton.title = @"Edit";
+        
+        self.plusHidden.enabled=YES;
+        edithEnable = NO;
+        
+      //  [self.editButton setStyle:UIBarButtonItemStyleDone];
+        [self.collectionView reloadData];
+
+    } else {
+        
+        // Change shareEnabled to YES and change the button text to DONE
+        [cellSelected removeAllObjects];
+        deleteButton.enabled=NO;
+        renameButton.enabled=NO;
+        self.navigationItem.leftBarButtonItems = @[deleteButton,renameButton];
+        
+        
+        replace=YES;
+        edithEnable = YES;
+        self.collectionView.allowsMultipleSelection = YES;
+        self.plusHidden.enabled=NO;
+        self.editButton.title = @"Done";
+        [self.collectionView reloadData];
+      //  [self.editButton setStyle:UIBarButtonItemStylePlain];
+        
+    }
+    
+}
+
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    if (edithEnable) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+  
+    if ([[segue identifier] isEqualToString:@"add"])
+    {
+    }
     
     if ([segue.identifier isEqualToString:@"NetworkDetails"]) {
         
@@ -120,6 +312,7 @@
     
 }
 
+
 -(IBAction) returnFromipViewController:(UIStoryboardSegue*) segue{
     
     
@@ -170,6 +363,7 @@
 }
 
 
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *identifier = @"Cell";
     
@@ -180,17 +374,26 @@
     recipeImageView.image = [UIImage imageNamed:@"projectIcon.ico"];
     
     //show the project name under project icon in collection
-    UITextView *label =(UITextView *)[cell viewWithTag:200];
-    
-    
     Project *currentProject=[[Project alloc]init];
-    
-    //just set the name of a project
+   
+    UITextField *label300=(UITextField *)[cell viewWithTag:300];
+    UITextView *label200=(UITextView *)[cell viewWithTag:200];
+
+    label300.hidden=YES;
     [currentProject setProjectName:[[ProjectList objectAtIndex:indexPath.row] ProjectName]];
-    label.text =[currentProject ProjectName];
+    label200.text =[currentProject ProjectName];
+    if (edithEnable) {
+        cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"delete.png"]];
+
+    }
     
+  //   recipeImageView.image = [UIImage imageNamed:@"delete.png"];
+
+
     return cell;
 }
+
+
 
 
 @end

@@ -30,15 +30,17 @@ NSMutableArray *subList;
     return self;
 }
 
--(NSNumber * ) convertIntToSubnet:(int)sub{
+-(NSNumber * ) convertIntToSubnet:(float)sub{
     int counter=0;
     for (int index=1; index!=0; ) {
         
         sub=sub/2;
-        if (sub==1) {
+        NSLog(@"sub %f",sub);
+        if (sub<=1) {
             index=0;
-            counter++;
+           // counter++;
         }
+        
         counter++;
     }
    
@@ -60,8 +62,8 @@ NSMutableArray *subList;
         int subnum=0;
         
         subnum = [[[[currentProject NetworkList]objectAtIndex:i ]clients]intValue];
-        subnum +=[[[[currentProject NetworkList]objectAtIndex:i ]Servers] intValue];
-        
+        subnum =subnum+[[[[currentProject NetworkList]objectAtIndex:i ]Servers] intValue];
+        subnum=subnum+2;
         NSNumber *subnet1=[self convertIntToSubnet:subnum];
         [subList addObject:subnet1];
         
@@ -81,7 +83,14 @@ NSMutableArray *subList;
         [ipAvalCopy addObject:[IPaval objectAtIndex:i]];
     }
     
+    Project *copyCurrnetProject=[[Project alloc]init];
     
+    for (int i=0; i<[[currentProject NetworkList]count]; i++) {
+        [[copyCurrnetProject NetworkList]addObject:[[currentProject NetworkList]objectAtIndex:i ]];
+        
+    }
+    
+    currentProject=[self sort:currentProject];
 }
 
 - (void)didReceiveMemoryWarning
@@ -137,19 +146,30 @@ NSMutableArray *subList;
    
     value1=[self ip1:[IP objectAtIndex:3] ip2:[IP objectAtIndex:2] ip3:[IP objectAtIndex:1] ip4:[IP objectAtIndex:0] subnet:[IP objectAtIndex:4]];
 
-    int from=0;int to=0;
+    //int from=0;
+    int to=0;
     
-    for (int i=0; i<indexPath.row; i++) {
-        from= [[[[projectList NetworkList]objectAtIndex:i] clients]intValue];
-    }
+//    for (int i=0; i<indexPath.row; i++) {
+//        from= [[[[projectList NetworkList]objectAtIndex:i] clients]intValue]+[[[[projectList NetworkList]objectAtIndex:i] Servers]intValue];
+//    }
     for (int i=0; i<indexPath.row+1; i++) {
-        to= [[[[projectList NetworkList]objectAtIndex:i] clients]intValue];
+        to= [[[[projectList NetworkList]objectAtIndex:i] clients]intValue]+[[[[projectList NetworkList]objectAtIndex:i] Servers]intValue];
     }
     
     int index1=0,index2=0,index3=0,index4=0;
     int clientNumber=0;
     
     clientNumber =[[[[currentProject NetworkList] objectAtIndex:indexPath.row] clients ]intValue]+[[[[currentProject NetworkList] objectAtIndex:indexPath.row] Servers ]intValue];
+    
+    int i;
+    
+    for (i=1; clientNumber>i; ) {
+        i=i*2;
+    }
+    i=i*2;
+    
+    
+    clientNumber=i;
     
     index1=clientNumber%255;
     
@@ -159,7 +179,7 @@ NSMutableArray *subList;
    
     index4=clientNumber/(255*255*255);
     
-    index1=[[IP objectAtIndex:0]intValue]+index1+from;
+    index1=[[IP objectAtIndex:0]intValue]+index1;//+from;
    
     if (index1>256) {
         index1=index1-255;
@@ -202,6 +222,40 @@ NSMutableArray *subList;
     return array;
 }
 
+-(Project *) sort:(Project *)projects{
+    
+    for (int j=0; j<[[projects NetworkList]count];j++) {
+        
+        for (int i=0; i<[[projects NetworkList]count];i++ ) {
+            
+            if ([[projects NetworkList]objectAtIndex:j] < [[projects NetworkList]objectAtIndex:i]) {
+                Netwok  * replacej=[[projects NetworkList]objectAtIndex:j];
+                Netwok  *replacei=[[projects NetworkList]objectAtIndex:i];
+
+                NSNumber *subnetj=[subList objectAtIndex:j];
+                NSNumber *subneti=[subList objectAtIndex:i];
+                
+                [subList replaceObjectAtIndex:i withObject:subnetj];
+                [subList replaceObjectAtIndex:j withObject:subneti];
+                
+        
+                [[projects NetworkList]replaceObjectAtIndex:i withObject:replacej];
+                [[projects NetworkList]replaceObjectAtIndex:j withObject:replacei];
+                j=i;
+                
+            }
+        
+        
+        
+        }
+
+        
+    }
+    
+    
+    
+    return projects;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -210,8 +264,9 @@ NSMutableArray *subList;
 
     
     NSString *projectName=[[[currentProject NetworkList]objectAtIndex:indexPath.row] NetworkName];
-    [IPaval replaceObjectAtIndex:4 withObject:[subList objectAtIndex:indexPath.row] ];
     
+    [IPaval replaceObjectAtIndex:4 withObject:[subList objectAtIndex:indexPath.row] ];
+
     clientIPrange=[self NetworkIpRange:IPaval projectlist:currentProject index:indexPath];
     
     UILabel *projectNameLable=(UILabel *)[cell viewWithTag:1];

@@ -8,8 +8,8 @@
         <scene sceneID="vYt-iy-nr7">
             <objects>
                 <collectionViewController autoresizesArchivedViewToFullSize="NO" id="ry1-Sf-EXT" customClass="ProjectListViewController" sceneMemberID="viewController">
-                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="DWb-ld-Lrt">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="568" directionalLockEnabled="YES" pagingEnabled="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="DWb-ld-Lrt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aLN-sH-gHz">
                             <size key="itemSize" width="147" height="124"/>
@@ -48,14 +48,26 @@
                             <outlet property="delegate" destination="ry1-Sf-EXT" id="Enl-NC-6Rj"/>
                         </connections>
                     </collectionView>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="list" id="oOd-fp-dOm">
                         <barButtonItem key="leftBarButtonItem" systemItem="add" id="wmj-BR-kZf">
                             <connections>
-                                <segue destination="TtX-bB-YrK" kind="push" id="NYx-49-rAQ"/>
+                                <segue destination="TtX-bB-YrK" kind="push" identifier="add" id="NYx-49-rAQ"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="6Rr-ks-qRP"/>
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="6Rr-ks-qRP">
+                            <connections>
+                                <action selector="editAction:" destination="ry1-Sf-EXT" id="EGd-fu-L21"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="ToDelete" destination="wmj-BR-kZf" id="5Dq-os-fwv"/>
+                        <outlet property="editButton" destination="6Rr-ks-qRP" id="bTd-Al-4IT"/>
+                        <outlet property="plusHidden" destination="wmj-BR-kZf" id="Oum-rA-vHh"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wrS-O7-hkr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

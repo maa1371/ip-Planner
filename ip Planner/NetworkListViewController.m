@@ -231,4 +231,23 @@
 {
     [controller dismissViewControllerAnimated:YES completion: nil];
 }
+- (void)tableView:(UITableView *)tableView
+commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        [[currentProject NetworkList] removeObjectAtIndex:indexPath.row];
+
+        [projectList replaceObjectAtIndex:[projectList indexOfObject:currentProject] withObject:currentProject];
+        
+        
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        
+    }
+    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }
+}
+
 @end
