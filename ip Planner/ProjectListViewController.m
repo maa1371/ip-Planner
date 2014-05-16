@@ -41,7 +41,7 @@ int  myindex;
     if(edithEnable)
         {
             [cellSelected addObject:[ProjectList objectAtIndex:indexPath.row]];
-            NSLog(@"counter1::%d",[cellSelected count]);
+            NSLog(@"counter1::%lu",(unsigned long)[cellSelected count]);
             if ([cellSelected count]==0) {
                 deleteButton.enabled=NO;
             }else{
@@ -67,7 +67,7 @@ int  myindex;
     {
 
         [cellSelected removeObject:[ProjectList objectAtIndex:indexPath.row]];
-        NSLog(@"counter2::%d",[cellSelected count]);
+        NSLog(@"counter2::%lu",(unsigned long)[cellSelected count]);
 
         if ([cellSelected count]==1) {
          //   myindex=indexPath.row;
@@ -177,15 +177,15 @@ int  myindex;
    
     [newNetwork setClients:[NSNumber numberWithInt:100]];
     [newNetwork setServers:[NSNumber numberWithInt:10]];
-    [newNetwork setNetworkName:@"network1"];
+    [newNetwork setNetworkName:@"Sample Network"];
     
     ip  *newIP =[[ip alloc]init];
     [newIP setIP:[NSNumber numberWithInteger:192] next2:[NSNumber numberWithInteger:168]  next3:[NSNumber numberWithInteger:1]  next4:[NSNumber numberWithInteger:0]  subnet:[NSNumber numberWithInteger:24] ];
     
     //set sample network list for sample project
     [new.NetworkList addObject:newNetwork];
-    [new.NetworkList addObject:newNetwork];
-    [new.NetworkList addObject:newNetwork];
+    //[new.NetworkList addObject:newNetwork];
+    //[new.NetworkList addObject:newNetwork];
     [new setNetworkIp:newIP];
     
     

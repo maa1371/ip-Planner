@@ -26,7 +26,7 @@
         ipViewController   *ipVC =[segue destinationViewController];
         ipVC.ProjectList=ProjectList;
         
-    NSLog(@"Send Data from ip navigation controller into ipview controller %d",ProjectList.count);
+    NSLog(@"Send Data from ip navigation controller into ipview controller %lu",(unsigned long)ProjectList.count);
     
 }
 

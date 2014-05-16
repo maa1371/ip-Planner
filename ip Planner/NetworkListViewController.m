@@ -12,6 +12,7 @@
 #import "ProjectListViewController.h"
 #import "AddToNetworkListViewController.h"
 #import "DisplayNetworkViewController.h"
+#import "addNetworkViewController.h"
 @interface NetworkListViewController ()
 @end
 
@@ -47,7 +48,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"currnt project Network list count::%d ",[[currentProject NetworkList]count]);
+    NSLog(@"currnt project Network list count::%d ",(int)[[currentProject NetworkList]count]);
 
     //Project *initProject=[[Project alloc]init];
     //[ProjectList addObject:initProject];
@@ -92,7 +93,6 @@
     
     
     // Configure the cell...
-    
     return cell;
 }
 
@@ -148,11 +148,15 @@
  */
 -(IBAction) SaveNewNetwork:(UIStoryboardSegue*) segue{
     
-    AddToNetworkListViewController *ATNLVC=[segue sourceViewController];
+    addNetworkViewController *ATNLVC=[segue sourceViewController];
     Netwok *newNetwork=[[Netwok alloc]init];
     
-    newNetwork.NetworkName=[[ATNLVC networkName]text];
-    
+    if (newNetwork.NetworkName) {
+        newNetwork.NetworkName=[[ATNLVC networkName]text];
+    }
+    else{
+        [newNetwork setNetworkName:@"Unnamed network"];
+    }
     
     NSString *newcliens=[[ATNLVC clientNumber]text];
     int clientNumber=[newcliens intValue];
@@ -174,9 +178,9 @@
     [ self.tableView reloadData];
     
     int index;
-    index=[projectList indexOfObject:currentProject];
+    index=(int)[projectList indexOfObject:currentProject];
     [projectList replaceObjectAtIndex:index withObject:currentProject];
-    [ATNLVC dismissViewControllerAnimated:YES completion: nil];
+   // [ATNLVC dismissViewControllerAnimated:YES completion: nil];
     
     
 }
@@ -207,7 +211,7 @@
     
     
     int path;
-    path=[[currentProject NetworkList]indexOfObject:newNetwork];
+    path=(int)[[currentProject NetworkList]indexOfObject:newNetwork];
 
     [[currentProject NetworkList] replaceObjectAtIndex:path withObject:newNetwork];
     
@@ -217,7 +221,7 @@
     [self.tableView reloadData];
     
     int index;
-    index=[projectList indexOfObject:currentProject];
+    index=(int)[projectList indexOfObject:currentProject];
     [projectList replaceObjectAtIndex:index withObject:currentProject];
     NSLog(@"IP:: %@",[[currentProject NetworkIp ]ip1]);
     

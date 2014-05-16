@@ -2,12 +2,11 @@
 //  AddProjectViewController.m
 //  ip Planner
 //
-//  Created by Mohammad Amin Ansari on 4/28/14.
+//  Created by Amin on 5/15/14.
 //  Copyright (c) 2014 Mohammad Amin Ansari. All rights reserved.
 //
 
 #import "AddProjectViewController.h"
-#import "Project.h"
 
 @interface AddProjectViewController ()
 
@@ -15,9 +14,9 @@
 
 @implementation AddProjectViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
     }
@@ -27,7 +26,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+ 
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,8 +39,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
-
 
 @end
