@@ -442,6 +442,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="MapButton" destination="bHn-pW-bgk" id="l7v-eW-hRx"/>
                         <outlet property="picker" destination="Tkj-7I-anq" id="dMc-nh-JyZ"/>
                     </connections>
                 </tableViewController>

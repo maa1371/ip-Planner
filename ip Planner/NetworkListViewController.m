@@ -151,11 +151,12 @@
     addNetworkViewController *ATNLVC=[segue sourceViewController];
     Netwok *newNetwork=[[Netwok alloc]init];
     
-    if (newNetwork.NetworkName) {
-        newNetwork.NetworkName=[[ATNLVC networkName]text];
-    }
-    else{
+    newNetwork.NetworkName=[[ATNLVC networkName]text];
+
+    if (newNetwork.NetworkName.length ==0) {
+       
         [newNetwork setNetworkName:@"Unnamed network"];
+
     }
     
     NSString *newcliens=[[ATNLVC clientNumber]text];

@@ -15,5 +15,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *serverNumber;
 
 @property (strong,nonatomic) Netwok *currentNetwork;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *saveButton;
 
 @end

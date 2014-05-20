@@ -325,7 +325,6 @@ int  myindex;
     [self.collectionView  reloadData ]   ;
     
     
-    
 }
 -(IBAction) returnFromNetworkListViewController:(UIStoryboardSegue*) segue{
     

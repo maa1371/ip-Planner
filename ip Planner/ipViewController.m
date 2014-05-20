@@ -10,7 +10,8 @@
 #import "Project.h"
 #import "NetworkMapViewController.h"
 #import "mapNavViewController.h"
-
+#import "MapDetailsViewController.h"
+#import "mapNavigationViewController.h"
 @interface ipViewController ()
 
 @end
@@ -37,7 +38,10 @@ int ip1,ip2,ip3,ip4,subnet1,subnet2,subnet3,subnet4,subnet;
     if ([segue.identifier isEqualToString:@"NetworkMap"]) {
         //   mapNavViewController *MNVC=[segue destinationViewController];
         //  NetworkMapViewController *NMVC=[MNVC.viewControllers objectAtIndex:0];
-        NetworkMapViewController *NMVC=[segue destinationViewController];
+        mapNavigationViewController  *mapnav=[segue destinationViewController];
+        
+        NetworkMapViewController *NMVC=[[mapnav viewControllers]objectAtIndex:0];
+        
         NMVC.currentProject=currentProject;
         NSNumber *ip11=[NSNumber numberWithInt:ip4];
         NSNumber *ip22=[NSNumber numberWithInt:ip3];
@@ -49,7 +53,7 @@ int ip1,ip2,ip3,ip4,subnet1,subnet2,subnet3,subnet4,subnet;
         NMVC.IPaval=ipAval;
         
         
-        NSLog(@"%d,%d,%d,%d",[ip11 intValue],[ip22 intValue],[ip33 intValue],[ip44 intValue]);
+        NSLog(@"here %d,%d,%d,%d",[ip11 intValue],[ip22 intValue],[ip33 intValue],[ip44 intValue]);
         
     }
     
@@ -81,9 +85,6 @@ int ip1,ip2,ip3,ip4,subnet1,subnet2,subnet3,subnet4,subnet;
 {
     
     
-    //    NSLog(@":-( %d",[[currentProject NetworkList]count]);
-    //    NSLog(@":-( %ld",(long)row);
-    //
     
     switch (component) {
         case 0:
@@ -104,63 +105,11 @@ int ip1,ip2,ip3,ip4,subnet1,subnet2,subnet3,subnet4,subnet;
             
     }
     
-    //    NSLog(@"IP ::%@.%@.%@.%@/%@",[[currentProject NetworkIp]ip1],[[currentProject NetworkIp]ip2],[[currentProject NetworkIp]ip3],[[currentProject NetworkIp]ip4],[[currentProject NetworkIp]SubnetMask]);
-    //    NSDecimalNumber * newNumber=[[NSDecimalNumber alloc] initWithLongLong:2 ];
-    //    newNumber= [newNumber decimalNumberByRaisingToPower:(32-[[ [currentProject NetworkIp]SubnetMask]longValue])];
-    //
-    //    NSLog(@"IP %lld",[newNumber longLongValue]);
-    //
-    
-    //
-    //    Boolean item[32];
-    //    item[0]=1;
-    
-    
-    
-    //    NSMutableArray  *item=[[NSMutableArray alloc]init];
-    //    item=[self ipToBinnary:[[currentProject NetworkIp]ip1] item2:[[currentProject NetworkIp]ip2] item3:[[currentProject NetworkIp]ip3] item4:[[currentProject NetworkIp]ip4]];
-    //
-    //    NSMutableArray *sub=[[NSMutableArray alloc]init];
-    //    sub=[self SubToBinnary:[[currentProject NetworkIp]SubnetMask ]];
-    //
-    
-    
-    //    Boolean ipBoll[32];
-    //    Boolean subBoll[32];
-    //    int indexip=0;
-    //    int indexsub=0;
-    //
-    //    for(NSString *boolean in [item reverseObjectEnumerator])
-    //    {
-    //        indexip++;
-    //        ipBoll[indexip]=[boolean boolValue];
-    //    }
-    //
-    //    for(NSString *boolean in [sub reverseObjectEnumerator])
-    //    {
-    //        indexip++;
-    //        subBoll[indexsub]=[boolean boolValue];
-    //    }
-    //
-    //    Boolean natije[32];
-    //
-    //    for (int i=0; i<32; i++) {
-    //        natije[i]=ipBoll[i] & subBoll[i];
-    //    }
-    //
-    //
-    //    NSMutableArray *natijeint=[[NSMutableArray alloc]init];
-    //
-    //    natijeint=[self BoolToNSNumber:natije];
-    //
-    //    NSLog(@"%@",[natijeint objectAtIndex:1]);
-    
     
     subnet=[[[currentProject NetworkIp] SubnetMask]intValue];
     
     
     
-    // 11111111 11111111 11111100 00000000
     
     if (subnet<=32 && 24<subnet) {
         NSLog(@"it is there");
@@ -203,6 +152,7 @@ int ip1,ip2,ip3,ip4,subnet1,subnet2,subnet3,subnet4,subnet;
     
     
     NSNumber *clientCounter=[self clientCount:currentProject];
+ 
     int ipNumber = [self power:2 to:(32-subnet)];
     
     if( [clientCounter intValue] < ipNumber)
@@ -214,6 +164,7 @@ int ip1,ip2,ip3,ip4,subnet1,subnet2,subnet3,subnet4,subnet;
         self.MapButton.enabled = NO;
         
     }
+    
     NSLog(@"client number::%d",[clientCounter intValue]);
     NSLog(@"ip number::%d",ipNumber);
     NSLog(@"ip aval shabake:: %d/%d/%d/%d",ip1,ip2,ip3,ip4);
@@ -233,19 +184,47 @@ int ip1,ip2,ip3,ip4,subnet1,subnet2,subnet3,subnet4,subnet;
 
 -(NSNumber *)clientCount:(Project *)iProject{
     int indexPath=(int)[[iProject NetworkList]count];
-    
+    int convertor=0;
     int counter=0;
     for (int i=0; i<indexPath; i++) {
         
-        counter= counter + [[[[iProject NetworkList]objectAtIndex:i] clients]intValue]+ [[[[iProject NetworkList]objectAtIndex:i] Servers]intValue];
-        
+        convertor= [[[[iProject NetworkList]objectAtIndex:i] clients]intValue]+ [[[[iProject NetworkList]objectAtIndex:i] Servers]intValue];
+        counter=counter+[self round:convertor];
+        NSLog(@"client number :: %d to %d",convertor,counter);
     }
-    
     
     NSNumber *returnNumber=[NSNumber numberWithInt:counter];
     
     
     return returnNumber ;
+}
+
+
+-(int)round:(int)item{
+    
+    int counter=0;
+    
+    item=item+2;
+    
+    int temp=1;
+    
+    int pow=1;
+    
+    while (temp==1) {
+        
+        counter++;
+        pow=[self power:2 to:counter];
+
+        if (pow>item) {
+            temp=0;
+        
+        }
+        
+    }
+
+    
+    return pow;
+    
 }
 
 - (void)viewDidLoad
@@ -299,137 +278,13 @@ int ip1,ip2,ip3,ip4,subnet1,subnet2,subnet3,subnet4,subnet;
     // Dispose of any resources that can be recreated.
 }
 
+-(IBAction) exitAction:(UIStoryboardSegue*) segue{
+   // NetworkMapViewController   *i=[[NetworkMapViewController alloc ]init];
+   // [i dismissViewControllerAnimated:YES completion: nil];
 
-//-(NSMutableArray *)BoolToNSNumber :(Boolean *)boolean{
-//
-//    NSMutableArray *natije=[[NSMutableArray alloc]init];
-//
-//    int index=0;
-//
-//    for (int i=0; i<8; i++) {
-//        index=index+(2^i)*boolean[i];
-//    }
-//
-//    [natije  addObject:[NSNumber numberWithInt:index]];
-//
-//    index=0;
-//    for (int i=8; i<16; i++) {
-//        index=index+(2^i)*boolean[i];
-//    }
-//
-//    [natije  addObject:[NSNumber numberWithInt:index]];
-//
-//    index=0;
-//    for (int i=16; i<24; i++) {
-//        index=index+(2^i)*boolean[i];
-//    }
-//
-//    [natije  addObject:[NSNumber numberWithInt:index]];
-//
-//    index=0;
-//    for (int i=24; i<32; i++) {
-//        index=index+(2^i)*boolean[i];
-//    }
-//
-//    [natije  addObject:[NSNumber numberWithInt:index]];
-//
-//
-//
-//
-//    return natije;
-//}
-//
-//
-//-(NSMutableArray*)SubToBinnary:(NSNumber *)subnet{
-//
-//    NSMutableArray * item=[[NSMutableArray alloc]init];
-//    int subnetmask =0;
-//    subnetmask=[subnet intValue];
-//
-//    for (int i=0; i<32; i++) {
-//        [item addObject:[NSNumber numberWithBool:0]];
-//    }
-//
-//    for (int i=31; i>31-subnetmask; i--) {
-//
-//
-//
-//        [item setObject:[NSNumber numberWithBool:1] atIndexedSubscript:i];
-//    }
-//
-//    return  item;
-//
-//}
-//
-//-(NSMutableArray *)ipToBinnary:(NSNumber *)ip1 item2:(NSNumber *)ip2 item3:(NSNumber *)ip3 item4:(NSNumber *)ip4{
-//
-//    NSMutableArray * item=[[NSMutableArray alloc]init];
-//    for (int i=0; i<32; i++) {
-//        [item addObject:[NSNumber numberWithBool:0]];
-//    }
-//
-//    int ip1int =0;
-//    ip1int=[ip1 intValue];
-//    int ip2int =0;
-//    ip2int=[ip2 intValue];
-//    int ip3int =0;
-//    ip3int=[ip3 intValue];
-//    int ip4int =0;
-//    ip4int=[ip4 intValue];
-//
-//
-//    for (int i=7; i>=0; i--) {
-//        Boolean baghi=0;
-//
-//        baghi=ip1int%2;
-//        ip1int=ip1int/2;
-//
-//
-//        [item setObject:[NSNumber numberWithBool:baghi] atIndexedSubscript:i];
-//    }
-//
-//    for (int i=15; i>7; i--) {
-//        Boolean baghi=0;
-//
-//        baghi=ip2int%2;
-//        ip2int=ip2int/2;
-//
-//
-//        [item setObject:[NSNumber numberWithBool:baghi] atIndexedSubscript:i];
-//    }
-//
-//    for (int i=23; i>15; i--) {
-//        Boolean baghi=0;
-//
-//        baghi=ip3int%2;
-//        ip3int=ip3int/2;
-//
-//
-//        [item setObject:[NSNumber numberWithBool:baghi] atIndexedSubscript:i];
-//    }
-//
-//    for (int i=31; i>23; i--) {
-//        Boolean baghi=0;
-//
-//        baghi=ip4int%2;
-//        ip4int=ip4int/2;
-//
-//
-//        [item setObject:[NSNumber numberWithBool:baghi] atIndexedSubscript:i];
-//    }
-//
-//
-//    return item;
-//}
-//
-//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-//{
-//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-//    if (self) {
-//        // Custom initialization
-//    }
-//    return self;
-//}
+//[UIView]
+}
+
 
 
 @end

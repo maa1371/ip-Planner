@@ -9,6 +9,7 @@
 #import "NetworkMapViewController.h"
 #import "Project.h"
 #import "Netwok.h"
+#import "MapDetailsViewController.h"
 
 @interface NetworkMapViewController ()
 
@@ -18,107 +19,554 @@
 
 @synthesize currentProject,IPaval;
 
-NSMutableArray *ipAvalCopy;
-NSMutableArray *clientIPrange;//=[[NSMutableArray alloc]init];
-NSMutableArray *subList;
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+Project *SortedCurrentProject;
+NSMutableArray * clientsNum;
+NSMutableArray * serverNum;
 
--(NSNumber * ) convertIntToSubnet:(float)sub{
-    int counter=0;
-    for (int index=1; index!=0; ) {
-        
-        sub=sub/2;
-        NSLog(@"sub %f",sub);
-        if (sub<=1) {
-            index=0;
-           // counter++;
-        }
-        
-        counter++;
-    }
-   
-    counter=32-counter;
-    
-    NSNumber *returnCount=[NSNumber numberWithInt:counter];
-    
-    return returnCount;
-}
+NSMutableArray * clientsNumround;
+NSMutableArray * serverNumround;
+
 
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
-    clientIPrange=[[NSMutableArray alloc]init];
-    ipAvalCopy=[[NSMutableArray alloc]init];
-    subList=[[NSMutableArray alloc]init];
-    
-    for (int i=0; i<[[currentProject NetworkList]  count]; i++) {
-        int subnum=0;
-        
-        subnum = [[[[currentProject NetworkList]objectAtIndex:i ]clients]intValue];
-        subnum =subnum+[[[[currentProject NetworkList]objectAtIndex:i ]Servers] intValue];
-        subnum=subnum+2;
-        NSNumber *subnet1=[self convertIntToSubnet:subnum];
-        [subList addObject:subnet1];
-        
-        
-       // [[[[currentProject NetworkList]objectAtIndex:i]eachNetworkIP]setSubnetMask:subnet1 ];
-        //[[[[currentProject NetworkList]objectAtIndex:i]eachNetworkIP]setSub:subnet1];
-      //  NSLog(@"subnet %d ",[[subList objectAtIndex:i]intValue]);
- 
-        
- //[[[[[currentProject NetworkList]objectAtIndex:i]eachNetworkIP]SubnetMask]intValue]);
-        
-        
-    }
-    
-    
-    for (int i=0; i<[IPaval count]; i++) {
-        [ipAvalCopy addObject:[IPaval objectAtIndex:i]];
-    }
-    
-    Project *copyCurrnetProject=[[Project alloc]init];
+    SortedCurrentProject =[[Project alloc]init];
+    clientsNum=[[NSMutableArray alloc]init];
+    serverNum=[[NSMutableArray alloc]init];
+    clientsNumround=[[NSMutableArray alloc]init];
+    serverNumround=[[NSMutableArray alloc]init];
     
     for (int i=0; i<[[currentProject NetworkList]count]; i++) {
-        [[copyCurrnetProject NetworkList]addObject:[[currentProject NetworkList]objectAtIndex:i ]];
+        [[SortedCurrentProject NetworkList]addObject:[[currentProject NetworkList]objectAtIndex:i ]];
         
     }
     
-    currentProject=[self sort:currentProject];
+    for (int i=0; i<[[currentProject NetworkList]count]; i++) {
+        [clientsNum addObject:[[[[currentProject NetworkList]objectAtIndex:i]clients]stringValue]];
+        [serverNum addObject:[[[[currentProject NetworkList]objectAtIndex:i]Servers]stringValue]];
+        
+    }
+    
+    
+    
+    SortedCurrentProject=[self clientNumberRound:SortedCurrentProject];
+
+    for (int i=0; i<[[currentProject NetworkList]count]; i++) {
+        [clientsNumround addObject:[[[[currentProject NetworkList]objectAtIndex:i]clients]stringValue]];
+        [serverNumround addObject:[[[[currentProject NetworkList]objectAtIndex:i]Servers]stringValue]];
+        
+    }
+
+    SortedCurrentProject=[self sort:SortedCurrentProject];
+   
+    
+    for (int i=0; i<[[SortedCurrentProject NetworkList]count]; i++) {
+        NSLog(@"sorted ::%d",[[[[SortedCurrentProject NetworkList]objectAtIndex:i]clients]intValue]);
+    }
+    
+    for (int i=0; i<[[currentProject NetworkList]count]; i++) {
+        
+        [[[SortedCurrentProject NetworkList]objectAtIndex:i]setClients:[NSNumber numberWithInt:[[clientsNum objectAtIndex:i] intValue]]];
+        [[[SortedCurrentProject NetworkList]objectAtIndex:i]setServers:[NSNumber numberWithInt:[[serverNum objectAtIndex:i] intValue]]];
+
+        
+    }
+    
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    MapDetailsViewController *to=[segue destinationViewController];
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    
+    to.NSclientNumber=[clientsNum objectAtIndex:indexPath.row];
+    to.NSserverNumber=[serverNum objectAtIndex:indexPath.row];
+    to.NSNetworkIP =[self networkIPShow];
+    to.NSbroadCastIP=[self broadcastIPShow];
+    to.NSclientIPFrom=[self serverIPFromShow];
+    to.NSclientIPTo=[self serverIPToShow];
+    to.NSserverIPFrom=[self clientIPFromShow];
+    to.NSserverIPto=[self clientIPToShow];
 }
 
-#pragma mark - Table view data source
+-(NSString *)networkIPShow{
+   
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    
+    int counter1=0;
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return 1;
+    int index1,index2,index3,index4;
+    
+    for (int i=0; i<indexPath.row; i++) {
+        
+        counter1 = counter1 + [[clientsNumround objectAtIndex:i]intValue];
+    }
+    
+
+    
+    index1=counter1%256;
+    
+    index2=counter1/256;
+    
+    index3=counter1/(256*256);
+    
+    index4=counter1/(256*256*256);
+    
+    index1=[[IPaval objectAtIndex:0]intValue]+index1;//+from;
+    if (index1>255) {
+        index1=index1-255;
+        index2++;
+    }
+    
+    index2=[[IPaval objectAtIndex:1]intValue]+index2;
+    
+    if (index2>255) {
+        index2=index2-255;
+        index3++;
+    }
+    
+    index3=[[IPaval objectAtIndex:2]intValue]+index3;
+    
+    if (index3>255) {
+        index3=index3-255;
+        index4++;
+    }
+    
+    index4=[[IPaval objectAtIndex:3]intValue]+index4;
+    
+    NSString *ip;
+    int subint;
+    NSString *sub;
+   // sub=[self clientNumberToSubnet:[[[SortedCurrentProject NetworkList]objectAtIndex:indexPath.row]stringValue]];
+
+    
+    subint=[[clientsNumround objectAtIndex:indexPath.row]intValue];
+    
+    sub=[[NSNumber numberWithInt:[self clientNumberToSubnet:subint]]stringValue];
+    
+    NSLog(@":%d",subint);
+    
+    
+    
+    ip=[self show:    [[NSNumber numberWithInt:index4]stringValue]
+              and:    [[NSNumber numberWithInt:index3]stringValue]
+              and:    [[NSNumber numberWithInt:index2]stringValue]
+              and:    [[NSNumber numberWithInt:index1]stringValue]
+              and:     sub ];
+    
+    return ip ;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    // Return the number of rows in the section.
-    return [currentProject NetworkList].count;
-}
--(NSString *)ip1:(NSNumber * )part1 ip2:(NSNumber * )part2 ip3:(NSNumber * )part3 ip4:(NSNumber * )part4 subnet:(NSNumber * )subNetMask{
-    NSString *part1String=[part1 stringValue];
-    NSString *part2String=[part2 stringValue];
-    NSString *part3String=[part3 stringValue];
-    NSString *part4String=[part4 stringValue];
-    NSString *partSubnet=[subNetMask stringValue];
+-(NSString *)broadcastIPShow{
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    
+    int counter1=0;
+    
+    int index1,index2,index3,index4;
+    
+    for (int i=0; i<indexPath.row; i++) {
+        
+        counter1 = counter1 + [[clientsNumround objectAtIndex:i]intValue];
+    }
+    
+    counter1=counter1+[[clientsNumround objectAtIndex:indexPath.row]intValue]-1;
+    
+    
+    index1=counter1%256;
+    
+    index2=counter1/256;
+    
+    index3=counter1/(256*256);
+    
+    index4=counter1/(256*256*256);
+    
+    index1=[[IPaval objectAtIndex:0]intValue]+index1;//+from;
+    
+    if (index1>255) {
+        index1=index1-255;
+        index2++;
+    }
+    
+    index2=[[IPaval objectAtIndex:1]intValue]+index2;
+    
+    if (index2>255) {
+        index2=index2-255;
+        index3++;
+    }
+    
+    index3=[[IPaval objectAtIndex:2]intValue]+index3;
+    
+    if (index3>255) {
+        index3=index3-255;
+        index4++;
+    }
 
+    index4=[[IPaval objectAtIndex:3]intValue]+index4;
+    
+    NSString *ip;
+    int subint;
+    NSString *sub;
+    // sub=[self clientNumberToSubnet:[[[SortedCurrentProject NetworkList]objectAtIndex:indexPath.row]stringValue]];
+    
+    
+    subint=[[clientsNumround objectAtIndex:indexPath.row]intValue];
+    
+    sub=[[NSNumber numberWithInt:[self clientNumberToSubnet:subint]]stringValue];
+    
+    NSLog(@":%d",subint);
+    
+    
+    
+    ip=[self show:    [[NSNumber numberWithInt:index4]stringValue]
+              and:    [[NSNumber numberWithInt:index3]stringValue]
+              and:    [[NSNumber numberWithInt:index2]stringValue]
+              and:    [[NSNumber numberWithInt:index1]stringValue]
+              and:     sub ];
+    
+    return ip ;
+}
+
+-(NSString *)serverIPFromShow{
+
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    if ([[serverNum objectAtIndex:indexPath.row]intValue]==0) {
+        return @"--.--.--.--/--";
+    }
+    else
+    {
+    int counter1=0;
+    
+    int index1,index2,index3,index4;
+    
+    for (int i=0; i<indexPath.row; i++) {
+        
+        counter1 = counter1 + [[clientsNumround objectAtIndex:i]intValue];
+    }
+    counter1=counter1+1;
+    
+    
+    index1=counter1%256;
+    
+    index2=counter1/256;
+    
+    index3=counter1/(256*256);
+    
+    index4=counter1/(256*256*256);
+    
+    index1=[[IPaval objectAtIndex:0]intValue]+index1;//+from;
+    
+    if (index1>255) {
+        index1=index1-255;
+        index2++;
+    }
+    
+    index2=[[IPaval objectAtIndex:1]intValue]+index2;
+    
+    if (index2>255) {
+        index2=index2-255;
+        index3++;
+    }
+    
+    index3=[[IPaval objectAtIndex:2]intValue]+index3;
+    
+    if (index3>255) {
+        index3=index3-255;
+        index4++;
+    }
+    
+    index4=[[IPaval objectAtIndex:3]intValue]+index4;
+    
+    NSString *ip;
+    int subint;
+    NSString *sub;
+    // sub=[self clientNumberToSubnet:[[[SortedCurrentProject NetworkList]objectAtIndex:indexPath.row]stringValue]];
+    
+    
+    subint=[[clientsNumround objectAtIndex:indexPath.row]intValue];
+    
+    sub=[[NSNumber numberWithInt:[self clientNumberToSubnet:subint]]stringValue];
+    
+    NSLog(@":%d",subint);
+    
+    
+    
+    ip=[self show:    [[NSNumber numberWithInt:index4]stringValue]
+              and:    [[NSNumber numberWithInt:index3]stringValue]
+              and:    [[NSNumber numberWithInt:index2]stringValue]
+              and:    [[NSNumber numberWithInt:index1]stringValue]
+              and:     sub ];
+    
+    return ip ;
+    }
+}
+
+-(NSString *)serverIPToShow{
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    if ([[serverNum objectAtIndex:indexPath.row]intValue]==0) {
+        return @"--.--.--.--/--";
+    }
+    else
+    {
+    
+    int counter1=0;
+    
+    int index1,index2,index3,index4;
+    
+    for (int i=0; i<indexPath.row; i++) {
+        
+        counter1 = counter1 + [[clientsNumround objectAtIndex:i]intValue];
+    }
+    
+    counter1=counter1+[[serverNum objectAtIndex:indexPath.row]intValue];
+    
+    
+    index1=counter1%256;
+    
+    index2=counter1/256;
+    
+    index3=counter1/(256*256);
+    
+    index4=counter1/(256*256*256);
+    
+    index1=[[IPaval objectAtIndex:0]intValue]+index1;//+from;
+    
+    if (index1>255) {
+        index1=index1-255;
+        index2++;
+    }
+    
+    index2=[[IPaval objectAtIndex:1]intValue]+index2;
+    
+    if (index2>255) {
+        index2=index2-255;
+        index3++;
+    }
+    
+    index3=[[IPaval objectAtIndex:2]intValue]+index3;
+    
+    if (index3>255) {
+        index3=index3-255;
+        index4++;
+    }
+    
+    index4=[[IPaval objectAtIndex:3]intValue]+index4;
+    
+    NSString *ip;
+    int subint;
+    NSString *sub;
+    // sub=[self clientNumberToSubnet:[[[SortedCurrentProject NetworkList]objectAtIndex:indexPath.row]stringValue]];
+    
+    
+    subint=[[clientsNumround objectAtIndex:indexPath.row]intValue];
+    
+    sub=[[NSNumber numberWithInt:[self clientNumberToSubnet:subint]]stringValue];
+    
+    NSLog(@":%d",subint);
+    
+    
+    
+    ip=[self show:    [[NSNumber numberWithInt:index4]stringValue]
+              and:    [[NSNumber numberWithInt:index3]stringValue]
+              and:    [[NSNumber numberWithInt:index2]stringValue]
+              and:    [[NSNumber numberWithInt:index1]stringValue]
+              and:     sub ];
+    
+    return ip ;
+    }
+}
+-(NSString *)clientIPFromShow{
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    if ([[clientsNum objectAtIndex:indexPath.row]intValue]==0) {
+        return @"--.--.--.--/--";
+    }
+    else
+    {
+    int counter1=0;
+    
+    int index1,index2,index3,index4;
+    
+    for (int i=0; i<indexPath.row; i++) {
+        
+        counter1 = counter1 + [[clientsNumround objectAtIndex:i]intValue];
+    }
+    
+    counter1=counter1+[[serverNum objectAtIndex:indexPath.row]intValue]+1;
+    
+    
+    index1=counter1%256;
+    
+    index2=counter1/256;
+    
+    index3=counter1/(256*256);
+    
+    index4=counter1/(256*256*256);
+    
+    index1=[[IPaval objectAtIndex:0]intValue]+index1;//+from;
+    
+    if (index1>255) {
+        index1=index1-255;
+        index2++;
+    }
+    
+    index2=[[IPaval objectAtIndex:1]intValue]+index2;
+    
+    if (index2>255) {
+        index2=index2-255;
+        index3++;
+    }
+    
+    index3=[[IPaval objectAtIndex:2]intValue]+index3;
+    
+    if (index3>255) {
+        index3=index3-255;
+        index4++;
+    }
+    
+    index4=[[IPaval objectAtIndex:3]intValue]+index4;
+    
+    NSString *ip;
+    int subint;
+    NSString *sub;
+    // sub=[self clientNumberToSubnet:[[[SortedCurrentProject NetworkList]objectAtIndex:indexPath.row]stringValue]];
+    
+    
+    subint=[[clientsNumround objectAtIndex:indexPath.row]intValue];
+    
+    sub=[[NSNumber numberWithInt:[self clientNumberToSubnet:subint]]stringValue];
+    
+    NSLog(@":%d",subint);
+    
+    
+    
+    ip=[self show:    [[NSNumber numberWithInt:index4]stringValue]
+              and:    [[NSNumber numberWithInt:index3]stringValue]
+              and:    [[NSNumber numberWithInt:index2]stringValue]
+              and:    [[NSNumber numberWithInt:index1]stringValue]
+              and:     sub ];
+    
+    return ip ;
+    }
+}
+
+-(NSString *)clientIPToShow{
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    if ([[clientsNum objectAtIndex:indexPath.row]intValue]==0) {
+        return @"--.--.--.--/--";
+    }
+    else{
+        
+    
+    int counter1=0;
+    
+    int index1,index2,index3,index4;
+    
+    for (int i=0; i<indexPath.row; i++) {
+        
+        counter1 = counter1 + [[clientsNumround objectAtIndex:i]intValue];
+    }
+    
+    counter1=counter1+[[clientsNumround objectAtIndex:indexPath.row]intValue]-1-1;
+    
+    
+    index1=counter1%256;
+    
+    index2=counter1/256;
+    
+    index3=counter1/(256*256);
+    
+    index4=counter1/(256*256*256);
+    
+    index1=[[IPaval objectAtIndex:0]intValue]+index1;//+from;
+    
+    if (index1>255) {
+        index1=index1-255;
+        index2++;
+    }
+    
+    index2=[[IPaval objectAtIndex:1]intValue]+index2;
+    
+    if (index2>255) {
+        index2=index2-255;
+        index3++;
+    }
+    
+    index3=[[IPaval objectAtIndex:2]intValue]+index3;
+    
+    if (index3>255) {
+        index3=index3-255;
+        index4++;
+    }
+    
+    index4=[[IPaval objectAtIndex:3]intValue]+index4;
+    
+    NSString *ip;
+    int subint;
+    NSString *sub;
+    // sub=[self clientNumberToSubnet:[[[SortedCurrentProject NetworkList]objectAtIndex:indexPath.row]stringValue]];
+    
+    
+    subint=[[clientsNumround objectAtIndex:indexPath.row]intValue];
+    
+    sub=[[NSNumber numberWithInt:[self clientNumberToSubnet:subint]]stringValue];
+    
+    NSLog(@":%d",subint);
+    
+    
+    
+    ip=[self show:    [[NSNumber numberWithInt:index4]stringValue]
+              and:    [[NSNumber numberWithInt:index3]stringValue]
+              and:    [[NSNumber numberWithInt:index2]stringValue]
+              and:    [[NSNumber numberWithInt:index1]stringValue]
+              and:     sub ];
+    
+        return ip ;}
+}
+
+-(int)clientNumberToSubnet:(int)clientNumber{
+    int counter=0;
+    int temp=0;
+    
+    while (temp==0) {
+        
+        clientNumber=clientNumber/2;
+        counter++;
+        
+        if (clientNumber==1) {
+            temp=1;
+        }
+    
+    }
+    
+    
+    return 32-counter;
+}
+
+
+
+-(NSString *)show:(NSString *)part1  and :(NSString *)part2 and: (NSString *)part3 and : (NSString *)part4  and :(NSString *)subnet{
+    
+    NSString *part1String=part1;
+    NSString *part2String=part2;
+    NSString *part3String=part3;
+    NSString *part4String=part4;
+    NSString *partSubnet =subnet;
+   // [self clientNumberToSubnet:clientCount];
+    
+   // NSString *partSubnet=[[NSNumber numberWithInt:[self clientNumberToSubnet:clientCount]]stringValue];
+    
+    
+    
+    
+    
+    
     
     NSString * returnVAlue=[[NSString alloc]init];
     returnVAlue=[returnVAlue stringByAppendingString:part1String];
@@ -136,218 +584,171 @@ NSMutableArray *subList;
     
 }
 
--(NSMutableArray *)NetworkIpRange :(NSMutableArray*)IP1 projectlist:(Project *)projectList index:(NSIndexPath *)indexPath{
-    NSMutableArray *IP=[[NSMutableArray alloc]init];
-  
-    IP=IP1;
-    
-    NSString *value1=[[NSString alloc]init];
-    NSString *value2=[[NSString alloc]init];
-   
-    value1=[self ip1:[IP objectAtIndex:3] ip2:[IP objectAtIndex:2] ip3:[IP objectAtIndex:1] ip4:[IP objectAtIndex:0] subnet:[IP objectAtIndex:4]];
 
-    //int from=0;
-    int to=0;
-    
-//    for (int i=0; i<indexPath.row; i++) {
-//        from= [[[[projectList NetworkList]objectAtIndex:i] clients]intValue]+[[[[projectList NetworkList]objectAtIndex:i] Servers]intValue];
-//    }
-    for (int i=0; i<indexPath.row+1; i++) {
-        to= [[[[projectList NetworkList]objectAtIndex:i] clients]intValue]+[[[[projectList NetworkList]objectAtIndex:i] Servers]intValue];
-    }
-    
-    int index1=0,index2=0,index3=0,index4=0;
-    int clientNumber=0;
-    
-    clientNumber =[[[[currentProject NetworkList] objectAtIndex:indexPath.row] clients ]intValue]+[[[[currentProject NetworkList] objectAtIndex:indexPath.row] Servers ]intValue];
-    
-    int i;
-    
-    for (i=1; clientNumber>i; ) {
-        i=i*2;
-    }
-    i=i*2;
-    
-    
-    clientNumber=i;
-    
-    index1=clientNumber%255;
-    
-    index2=clientNumber/255;
-    
-    index3=clientNumber/(255*255);
-   
-    index4=clientNumber/(255*255*255);
-    
-    index1=[[IP objectAtIndex:0]intValue]+index1;//+from;
-   
-    if (index1>256) {
-        index1=index1-255;
-        index2++;
-    }
-    
-    index2=[[IP objectAtIndex:1]intValue]+index2;
-   
-    if (index2>256) {
-        index2=index2-255;
-        index3++;
-    }
-    
-    index3=[[IP objectAtIndex:2]intValue]+index3;
-    
-    if (index3>256) {
-        index3=index3-255;
-        index4++;
-    }
-    
-    index4=[[IP objectAtIndex:3]intValue]+index4;
-    
-    
-    [IP replaceObjectAtIndex:0 withObject:[NSNumber numberWithInt:index1]];
-    [IP replaceObjectAtIndex:1 withObject:[NSNumber numberWithInt:index2]];
-    [IP replaceObjectAtIndex:2 withObject:[NSNumber numberWithInt:index3]];
-    [IP replaceObjectAtIndex:3 withObject:[NSNumber numberWithInt:index4]];
-    
-   
-    
-    
-    value2=[self ip1:[IP objectAtIndex:3] ip2:[IP objectAtIndex:2] ip3:[IP objectAtIndex:1] ip4:[IP objectAtIndex:0] subnet:[IP objectAtIndex:4]];
- //   NSNumber *firstIP=[NSNumber numberWithInt:]
-  //  NSNumber *secondIP=[NSNumber numberWithInt:]
-  
-    NSMutableArray * array=[[NSMutableArray alloc]init];
-    [array addObject:value1];
-    [array addObject:value2];
-    
-    return array;
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections.
+    return 1 ;
 }
 
--(Project *) sort:(Project *)projects{
-    
-    for (int j=0; j<[[projects NetworkList]count];j++) {
-        
-        for (int i=0; i<[[projects NetworkList]count];i++ ) {
-            
-            if ([[projects NetworkList]objectAtIndex:j] < [[projects NetworkList]objectAtIndex:i]) {
-                Netwok  * replacej=[[projects NetworkList]objectAtIndex:j];
-                Netwok  *replacei=[[projects NetworkList]objectAtIndex:i];
-
-                NSNumber *subnetj=[subList objectAtIndex:j];
-                NSNumber *subneti=[subList objectAtIndex:i];
-                
-                [subList replaceObjectAtIndex:i withObject:subnetj];
-                [subList replaceObjectAtIndex:j withObject:subneti];
-                
-        
-                [[projects NetworkList]replaceObjectAtIndex:i withObject:replacej];
-                [[projects NetworkList]replaceObjectAtIndex:j withObject:replacei];
-                j=i;
-                
-            }
-        
-        
-        
-        }
-
-        
-    }
-    
-    
-    
-    return projects;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    // Return the number of rows in the section.
+    return [SortedCurrentProject NetworkList].count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"result";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-
+    NSString *networkName=[[[SortedCurrentProject NetworkList]objectAtIndex:indexPath.row]NetworkName];
+    [[cell textLabel]setText:networkName];
     
-    NSString *projectName=[[[currentProject NetworkList]objectAtIndex:indexPath.row] NetworkName];
+//    NSString *NetworkName=[[[currentProject NetworkList]objectAtIndex:indexPath.row] NetworkName];
+//    
+//    
+//    UILabel *projectNameLable=(UILabel *)[cell viewWithTag:1];
+//    projectNameLable.text=NetworkName;
+//   
+//    
+//    UILabel *projectClientLable1=(UILabel *)[cell viewWithTag:3];
+//    UILabel *projectClientLable2=(UILabel *)[cell viewWithTag:5];
+//    
+//    NSString *sub;
+//    NSNumber *clientNumber=[[[SortedCurrentProject NetworkList]objectAtIndex:indexPath.row]clients];
+//    sub=[[NSNumber numberWithInt: [self clientNumberToSubnet:[clientNumber intValue]]]stringValue];
+//    
+//    
+//    
+//    
+//    projectClientLable1.text=[[[[SortedCurrentProject NetworkList]objectAtIndex:indexPath.row]clients]stringValue];
+//    
+//    
+//    projectClientLable2.text=[self show:[[IPaval objectAtIndex:3] stringValue] and:[[IPaval objectAtIndex:2] stringValue] and:[[IPaval objectAtIndex:1] stringValue] and:[[IPaval objectAtIndex:0] stringValue] and:sub];
+//
+//    
     
-    [IPaval replaceObjectAtIndex:4 withObject:[subList objectAtIndex:indexPath.row] ];
-
-    clientIPrange=[self NetworkIpRange:IPaval projectlist:currentProject index:indexPath];
-    
-    UILabel *projectNameLable=(UILabel *)[cell viewWithTag:1];
-    projectNameLable.text=projectName;
-    
-    UILabel *projectClientLable1=(UILabel *)[cell viewWithTag:3];
-   
-    projectClientLable1.text=[@"Network Ip:: " stringByAppendingString:[clientIPrange objectAtIndex:0]];
-
-   
-    UILabel *projectClientLable2=(UILabel *)[cell viewWithTag:5];
-    projectClientLable2.text=[@"Broad cast Ip :: " stringByAppendingString:[clientIPrange objectAtIndex:1]];
-    
-    if (indexPath.row==[[currentProject NetworkList]count]-1) {
-        
-        for (int i=0; i<[IPaval count]; i++) {
-            [IPaval replaceObjectAtIndex:i  withObject:[ipAvalCopy objectAtIndex:i]];
-        }
-        
-        
-    }
-    
-    
-    NSLog(@"%d,%d,%d,%d",[[IPaval objectAtIndex:0] intValue] ,
-                        [[IPaval objectAtIndex:1] intValue],
-                        [[IPaval objectAtIndex:2] intValue],
-                        [[IPaval objectAtIndex:3] intValue]);
-
     return cell;
     
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(Project *) sort:(Project *)projects{
+    
+    for (int i=0; i<[[projects NetworkList]count];i++ ) {
+        
+        
+        for (int j=i; j<[[projects NetworkList]count];j++ ) {
+            
+            if ([[[[projects NetworkList]objectAtIndex:i]clients]intValue]<[[[[projects NetworkList]objectAtIndex:j]clients]intValue]) {
+            
+                Netwok * temp;
+                temp=[[projects NetworkList]objectAtIndex:i] ;
+                
+                [[projects NetworkList]replaceObjectAtIndex:i withObject:[[projects NetworkList]objectAtIndex:j]];
+                [[projects NetworkList]replaceObjectAtIndex:j withObject:temp];
+                
+                NSString *NStemp;
+                NStemp=[clientsNum objectAtIndex:i];
+                [clientsNum replaceObjectAtIndex:i withObject:[clientsNum objectAtIndex:j]];
+                [clientsNum replaceObjectAtIndex:j withObject:NStemp];
+                
+                NStemp=[serverNum objectAtIndex:i];
+                [serverNum replaceObjectAtIndex:i withObject:[serverNum objectAtIndex:j]];
+                [serverNum replaceObjectAtIndex:j withObject:NStemp];
+                
+                NStemp=[clientsNumround objectAtIndex:i];
+                [clientsNumround replaceObjectAtIndex:i withObject:[clientsNumround objectAtIndex:j]];
+                [clientsNumround replaceObjectAtIndex:j withObject:NStemp];
+                
+                NStemp=[serverNumround objectAtIndex:i];
+                [serverNumround replaceObjectAtIndex:i withObject:[serverNumround objectAtIndex:j]];
+                [serverNumround replaceObjectAtIndex:j withObject:NStemp];
+                
+                
+            }
+            
+        }
+        
+        
+        
+    }
+    
+    return projects;
 }
 
- */
 
+
+
+-(int)power:(int)item1 to:(int)item2{
+    int value=1;
+    for (int index=0; index<item2; index++) {
+        value=value*item1;
+    }
+    return value;
+}
+
+
+-(Project *)clientNumberRound:(Project *)iProject{
+  
+    int indexPath=(int)[[iProject NetworkList]count];
+    int convertor=0;
+    int counter=0;
+    for (int i=0; i<indexPath; i++) {
+        
+        convertor= [[[[iProject NetworkList]objectAtIndex:i] clients]intValue]+ [[[[iProject NetworkList]objectAtIndex:i] Servers]intValue];
+        counter=[self round:convertor];
+    
+        [[[iProject NetworkList]objectAtIndex:i]setClients:[NSNumber numberWithInt:counter]];
+        [[[iProject NetworkList]objectAtIndex:i]setServers:[NSNumber numberWithInt:0]];
+        
+        
+    }
+    
+    return iProject ;
+}
+
+
+-(int)round:(int)item{
+    
+    int counter=0;
+    
+    item=item+2;
+    
+    int temp=1;
+    
+    int pow=1;
+    
+    while (temp==1) {
+        
+        counter++;
+        pow=[self power:2 to:counter];
+        
+        if (pow>item) {
+            temp=0;
+            
+        }
+        
+    }
+    
+    
+    return pow;
+    
+}
+
+
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+- (IBAction)exitAction:(id)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end

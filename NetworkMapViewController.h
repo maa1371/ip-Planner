@@ -13,5 +13,6 @@
 
 @property (nonatomic,strong) Project *currentProject;
 @property (nonatomic,strong) NSMutableArray * IPaval;
+- (IBAction)exitAction:(id)sender;
 
 @end
