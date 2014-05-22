@@ -14,10 +14,32 @@
 
 @implementation MapDetailsViewController
 
+///header of static group
+
+-    (void) tableView : (UITableView*) tableView
+willDisplayHeaderView : (UIView*) view
+           forSection : (NSInteger) section {
+    [[((UITableViewHeaderFooterView*) view) textLabel] setTextColor : [UIColor whiteColor]];
+    //    [[((UITableViewHeaderFooterView*) view) textLabel] setFont:[UIFont fontWithName:@"System" size:72]];
+    [[((UITableViewHeaderFooterView*) view) textLabel] setFont:[UIFont systemFontOfSize:20]];
+    
+}
+////////////////////////////
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //////////////////////////////
+    
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:@"back.png"] drawInRect:self.view.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+    
+  //////////////
     
     [[self clientNumber]setText:[self NSclientNumber]];
     [[self serverNumber]setText:[self NSserverNumber]];

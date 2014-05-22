@@ -8,7 +8,7 @@
 
 #import "DisplayNetworkViewController.h"
 
-@interface DisplayNetworkViewController ()<UITextFieldDelegate>
+@interface DisplayNetworkViewController () <UITextFieldDelegate>
 
 @end
 
@@ -67,10 +67,57 @@
     return YES;
 }
 
+///header of static group
+
+-    (void) tableView : (UITableView*) tableView
+willDisplayHeaderView : (UIView*) view
+           forSection : (NSInteger) section {
+    [[((UITableViewHeaderFooterView*) view) textLabel] setTextColor : [UIColor whiteColor]];
+    //    [[((UITableViewHeaderFooterView*) view) textLabel] setFont:[UIFont fontWithName:@"System" size:72]];
+    [[((UITableViewHeaderFooterView*) view) textLabel] setFont:[UIFont systemFontOfSize:24]];
+    
+}
+////////////////////////////
+
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    ///text field
+    
+    
+    self.NetworkName.layer.cornerRadius=8.0f;
+    self.clientNumber.layer.cornerRadius=8.0f;
+    self.serverNumber.layer.cornerRadius=8.0f;
+    
+    self.NetworkName.layer.masksToBounds=YES;
+    self.clientNumber.layer.masksToBounds=YES;
+    self.serverNumber.layer.masksToBounds=YES;
+    
+    self.NetworkName.layer.borderColor=[[UIColor whiteColor]CGColor];
+    self.clientNumber.layer.borderColor=[[UIColor whiteColor]CGColor];
+    self.serverNumber.layer.borderColor=[[UIColor whiteColor]CGColor];
+    
+    self.NetworkName.layer.borderWidth= 1.5f;
+    self.clientNumber.layer.borderWidth= 1.5f;
+    self.serverNumber.layer.borderWidth= 1.5f;
+    
+    self.NetworkName.textColor=[UIColor whiteColor];
+    self.clientNumber.textColor=[UIColor whiteColor];
+    self.serverNumber.textColor=[UIColor whiteColor];
+    
+    
+    //////////////////////////////
+    
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:@"back.png"] drawInRect:self.view.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+    
+    
+    
     self.NetworkName.text =[self.currentNetwork NetworkName];
     self.clientNumber.text =[[self.currentNetwork clients]stringValue];
     self.serverNumber.text =[[self.currentNetwork Servers]stringValue];

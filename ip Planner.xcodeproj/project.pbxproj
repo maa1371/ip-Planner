@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		E801C77619181B3100111B3F /* mapNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E801C77519181B3100111B3F /* mapNavViewController.m */; };
-		E810EDF61921767D007671CE /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = E810EDF51921767D007671CE /* delete.png */; };
 		E81761FF190EAF7E003FBBDC /* ipNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E81761FE190EAF7E003FBBDC /* ipNavigationViewController.m */; };
 		E8176208190EC3D0003FBBDC /* customtabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8176207190EC3D0003FBBDC /* customtabViewController.m */; };
 		E82E737B190AC72B00E9B510 /* ProjectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E737A190AC72B00E9B510 /* ProjectIcon.png */; };
@@ -18,9 +17,12 @@
 		E8417498190E7BE600228045 /* Netwok.m in Sources */ = {isa = PBXBuildFile; fileRef = E8417497190E7BE600228045 /* Netwok.m */; };
 		E84174AA190E883000228045 /* NetworkListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84174A9190E883000228045 /* NetworkListViewController.m */; };
 		E84174B0190E892D00228045 /* EditNetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84174AF190E892D00228045 /* EditNetworkViewController.m */; };
+		E8480136192E190A00C75ED4 /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = E8480135192E190A00C75ED4 /* delete.png */; };
 		E859D788192289C700D0AEB9 /* addNetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E859D787192289C700D0AEB9 /* addNetworkViewController.m */; };
 		E862E8C5192B88E0007862F0 /* mapNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E862E8C4192B88E0007862F0 /* mapNavigationViewController.m */; };
 		E8638BCF19215D7B0096CDF7 /* photo-frame-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = E8638BCE19215D7B0096CDF7 /* photo-frame-selected.png */; };
+		E879834C192D2AA800F26ADB /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = E879834B192D2AA800F26ADB /* back.png */; };
+		E8992B5F192DF80E00535F8F /* side_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E8992B5E192DF80E00535F8F /* side_icon.png */; };
 		E8A6BBEA190EC516006DE11A /* ProjectListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A6BBE9190EC516006DE11A /* ProjectListViewController.m */; };
 		E8DF383C190E8AF400C98F07 /* NetworkMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DF383B190E8AF400C98F07 /* NetworkMapViewController.m */; };
 		E8F2DB07190AA6DA00CA760A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8F2DB06190AA6DA00CA760A /* Foundation.framework */; };
@@ -38,6 +40,7 @@
 		E8F2DB33190AA6DA00CA760A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E8F2DB31190AA6DA00CA760A /* InfoPlist.strings */; };
 		E8F2DB35190AA6DA00CA760A /* ip_PlannerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F2DB34190AA6DA00CA760A /* ip_PlannerTests.m */; };
 		E8F40099192B51C200196CD4 /* MapDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F40098192B51C200196CD4 /* MapDetailsViewController.m */; };
+		E8F9CD6A192DDACD0086686E /* proj-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F9CD69192DDACD0086686E /* proj-icon.png */; };
 		E8FF208B1924D96300032EAB /* AddProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FF208A1924D96300032EAB /* AddProjectViewController.m */; };
 		E8FF208E1924DC3A00032EAB /* DisplayNetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FF208D1924DC3A00032EAB /* DisplayNetworkViewController.m */; };
 		E8FF20911924E4B000032EAB /* ipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FF20901924E4B000032EAB /* ipViewController.m */; };
@@ -56,7 +59,6 @@
 /* Begin PBXFileReference section */
 		E801C77419181B3100111B3F /* mapNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mapNavViewController.h; sourceTree = "<group>"; };
 		E801C77519181B3100111B3F /* mapNavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mapNavViewController.m; sourceTree = "<group>"; };
-		E810EDF51921767D007671CE /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
 		E81761FD190EAF7E003FBBDC /* ipNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ipNavigationViewController.h; sourceTree = "<group>"; };
 		E81761FE190EAF7E003FBBDC /* ipNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ipNavigationViewController.m; sourceTree = "<group>"; };
 		E8176206190EC3D0003FBBDC /* customtabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customtabViewController.h; sourceTree = "<group>"; };
@@ -74,11 +76,14 @@
 		E84174A9190E883000228045 /* NetworkListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkListViewController.m; sourceTree = "<group>"; };
 		E84174AE190E892D00228045 /* EditNetworkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditNetworkViewController.h; sourceTree = "<group>"; };
 		E84174AF190E892D00228045 /* EditNetworkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditNetworkViewController.m; sourceTree = "<group>"; };
+		E8480135192E190A00C75ED4 /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
 		E859D786192289C700D0AEB9 /* addNetworkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addNetworkViewController.h; sourceTree = "<group>"; };
 		E859D787192289C700D0AEB9 /* addNetworkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addNetworkViewController.m; sourceTree = "<group>"; };
 		E862E8C3192B88E0007862F0 /* mapNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mapNavigationViewController.h; sourceTree = "<group>"; };
 		E862E8C4192B88E0007862F0 /* mapNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mapNavigationViewController.m; sourceTree = "<group>"; };
 		E8638BCE19215D7B0096CDF7 /* photo-frame-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo-frame-selected.png"; sourceTree = "<group>"; };
+		E879834B192D2AA800F26ADB /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		E8992B5E192DF80E00535F8F /* side_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = side_icon.png; path = ../side_icon.png; sourceTree = "<group>"; };
 		E8A6BBE9190EC516006DE11A /* ProjectListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectListViewController.m; sourceTree = "<group>"; };
 		E8DF383A190E8AF400C98F07 /* NetworkMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkMapViewController.h; path = ../NetworkMapViewController.h; sourceTree = "<group>"; };
 		E8DF383B190E8AF400C98F07 /* NetworkMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkMapViewController.m; path = ../NetworkMapViewController.m; sourceTree = "<group>"; };
@@ -102,6 +107,14 @@
 		E8F2DB34190AA6DA00CA760A /* ip_PlannerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ip_PlannerTests.m; sourceTree = "<group>"; };
 		E8F40097192B51C200196CD4 /* MapDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapDetailsViewController.h; sourceTree = "<group>"; };
 		E8F40098192B51C200196CD4 /* MapDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapDetailsViewController.m; sourceTree = "<group>"; };
+		E8F9CD69192DDACD0086686E /* proj-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "proj-icon.png"; sourceTree = "<group>"; };
+		E8F9CD6B192DE51A0086686E /* 120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 120.png; path = ../120.png; sourceTree = "<group>"; };
+		E8F9CD6C192DE52A0086686E /* 76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 76.png; path = ../76.png; sourceTree = "<group>"; };
+		E8F9CD6D192DE5350086686E /* 152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 152.png; path = ../152.png; sourceTree = "<group>"; };
+		E8F9CD6E192DE55E0086686E /* 80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 80.png; path = ../80.png; sourceTree = "<group>"; };
+		E8F9CD6F192DE5690086686E /* 40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 40.png; path = ../40.png; sourceTree = "<group>"; };
+		E8F9CD70192DE5830086686E /* 58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 58.png; path = ../58.png; sourceTree = "<group>"; };
+		E8F9CD71192DE5920086686E /* 29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 29.png; path = ../29.png; sourceTree = "<group>"; };
 		E8FF20891924D96300032EAB /* AddProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddProjectViewController.h; path = ../AddProjectViewController.h; sourceTree = "<group>"; };
 		E8FF208A1924D96300032EAB /* AddProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddProjectViewController.m; path = ../AddProjectViewController.m; sourceTree = "<group>"; };
 		E8FF208C1924DC3A00032EAB /* DisplayNetworkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayNetworkViewController.h; sourceTree = "<group>"; };
@@ -316,7 +329,17 @@
 		E8F2DB0D190AA6DA00CA760A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E810EDF51921767D007671CE /* delete.png */,
+				E8992B5E192DF80E00535F8F /* side_icon.png */,
+				E8F9CD71192DE5920086686E /* 29.png */,
+				E8F9CD70192DE5830086686E /* 58.png */,
+				E8F9CD6F192DE5690086686E /* 40.png */,
+				E8F9CD6E192DE55E0086686E /* 80.png */,
+				E8F9CD6D192DE5350086686E /* 152.png */,
+				E8F9CD6C192DE52A0086686E /* 76.png */,
+				E8F9CD6B192DE51A0086686E /* 120.png */,
+				E8480135192E190A00C75ED4 /* delete.png */,
+				E8F9CD69192DDACD0086686E /* proj-icon.png */,
+				E879834B192D2AA800F26ADB /* back.png */,
 				E8638BCE19215D7B0096CDF7 /* photo-frame-selected.png */,
 				E82E737C190AC7E900E9B510 /* projectIcon.ico */,
 				E82E737A190AC72B00E9B510 /* ProjectIcon.png */,
@@ -422,12 +445,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E810EDF61921767D007671CE /* delete.png in Resources */,
 				E8638BCF19215D7B0096CDF7 /* photo-frame-selected.png in Resources */,
 				E8F2DB1D190AA6DA00CA760A /* Main_iPad.storyboard in Resources */,
 				E8F2DB22190AA6DA00CA760A /* Images.xcassets in Resources */,
+				E879834C192D2AA800F26ADB /* back.png in Resources */,
 				E82E737B190AC72B00E9B510 /* ProjectIcon.png in Resources */,
+				E8480136192E190A00C75ED4 /* delete.png in Resources */,
 				E8F2DB1A190AA6DA00CA760A /* Main_iPhone.storyboard in Resources */,
+				E8F9CD6A192DDACD0086686E /* proj-icon.png in Resources */,
+				E8992B5F192DF80E00535F8F /* side_icon.png in Resources */,
 				E8F2DB11190AA6DA00CA760A /* InfoPlist.strings in Resources */,
 				E82E737D190AC7E900E9B510 /* projectIcon.ico in Resources */,
 			);
@@ -600,8 +626,7 @@
 		E8F2DB39190AA6DA00CA760A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-3";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ip Planner/ip Planner-Prefix.pch";
 				INFOPLIST_FILE = "ip Planner/ip Planner-Info.plist";
@@ -613,8 +638,7 @@
 		E8F2DB3A190AA6DA00CA760A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-3";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ip Planner/ip Planner-Prefix.pch";
 				INFOPLIST_FILE = "ip Planner/ip Planner-Info.plist";

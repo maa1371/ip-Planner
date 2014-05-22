@@ -48,8 +48,41 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    ///////////
+
+//    UIGraphicsBeginImageContext(self.view.frame.size);
+//    [[UIImage imageNamed:@"back.png"] drawInRect:self.view.bounds];
+//    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+
+    UIImage *image = [UIImage imageNamed:@"back.png"];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    [self.view  insertSubview:imageView atIndex:0];
+    
+    ////////////////////
+    self.navigationController.navigationBar.barTintColor=[UIColor blackColor];
+    
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    [UIColor whiteColor],NSForegroundColorAttributeName,
+                                    [UIColor whiteColor],NSBackgroundColorAttributeName,nil];
+    
+    self.navigationController.navigationBar.titleTextAttributes = textAttributes;
+    
+    ///tab bar
+    
+    self.tabBarController.tabBar.barTintColor=[UIColor blackColor];
+    self.tabBarController.tabBar.tintColor=[UIColor whiteColor];
+    
+    /////////////
+    
     NSLog(@"currnt project Network list count::%d ",(int)[[currentProject NetworkList]count]);
 
+    
+    
+    
     //Project *initProject=[[Project alloc]init];
     //[ProjectList addObject:initProject];
     
@@ -83,16 +116,18 @@
     static NSString *CellIdentifier = @"Netwrokid";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-   // Project *currentProject=[ProjectList objectAtIndex:0];
     
+    UILabel *lable200 =(UILabel*)[cell viewWithTag:200];
+   // lable200.backgroundColor=[UIColor whiteColor];
     
-    [cell.textLabel setText:[[[currentProject NetworkList] objectAtIndex:indexPath.row]NetworkName]];
-  //  NSLog(@"name %@" ,[[[currentProject NetworkList] objectAtIndex:indexPath.row]NetworkName]);
+   
+    [lable200 setText:[[[currentProject NetworkList] objectAtIndex:indexPath.row]NetworkName]];
     
-    //[cell.textLabel setText:@"amin"];
+    UIImageView *recipeImageView = (UIImageView *)[cell viewWithTag:210];
+    recipeImageView.image = [UIImage imageNamed:@"side_icon.png"];
     
+
     
-    // Configure the cell...
     return cell;
 }
 

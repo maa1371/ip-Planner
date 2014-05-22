@@ -31,6 +31,34 @@ NSMutableArray * serverNumround;
 {
     
     [super viewDidLoad];
+    
+    
+    ///////////
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:@"back.png"] drawInRect:self.view.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+    ////////////////////
+    
+    self.navigationController.navigationBar.barTintColor=[UIColor blackColor];
+    
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    [UIColor whiteColor],NSForegroundColorAttributeName,
+                                    [UIColor whiteColor],NSBackgroundColorAttributeName,nil];
+    
+    self.navigationController.navigationBar.titleTextAttributes = textAttributes;
+    
+    ///tab bar
+    
+    self.tabBarController.tabBar.barTintColor=[UIColor blackColor];
+    self.tabBarController.tabBar.tintColor=[UIColor whiteColor];
+    
+    /////////////
+
+    
     SortedCurrentProject =[[Project alloc]init];
     clientsNum=[[NSMutableArray alloc]init];
     serverNum=[[NSMutableArray alloc]init];
@@ -90,6 +118,7 @@ NSMutableArray * serverNumround;
     to.NSclientIPTo=[self serverIPToShow];
     to.NSserverIPFrom=[self clientIPFromShow];
     to.NSserverIPto=[self clientIPToShow];
+    to.title=[[[currentProject NetworkList]objectAtIndex:indexPath.row]NetworkName];
 }
 
 -(NSString *)networkIPShow{
@@ -602,32 +631,17 @@ NSMutableArray * serverNumround;
 {
     static NSString *CellIdentifier = @"result";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    NSString *networkName=[[[SortedCurrentProject NetworkList]objectAtIndex:indexPath.row]NetworkName];
-    [[cell textLabel]setText:networkName];
+//    NSString *networkName=[[[SortedCurrentProject NetworkList]objectAtIndex:indexPath.row]NetworkName];
+//    [[cell textLabel]setText:networkName];
+//    
+    UILabel *lable200 =(UILabel*)[cell viewWithTag:200];
+    // lable200.backgroundColor=[UIColor whiteColor];
     
-//    NSString *NetworkName=[[[currentProject NetworkList]objectAtIndex:indexPath.row] NetworkName];
-//    
-//    
-//    UILabel *projectNameLable=(UILabel *)[cell viewWithTag:1];
-//    projectNameLable.text=NetworkName;
-//   
-//    
-//    UILabel *projectClientLable1=(UILabel *)[cell viewWithTag:3];
-//    UILabel *projectClientLable2=(UILabel *)[cell viewWithTag:5];
-//    
-//    NSString *sub;
-//    NSNumber *clientNumber=[[[SortedCurrentProject NetworkList]objectAtIndex:indexPath.row]clients];
-//    sub=[[NSNumber numberWithInt: [self clientNumberToSubnet:[clientNumber intValue]]]stringValue];
-//    
-//    
-//    
-//    
-//    projectClientLable1.text=[[[[SortedCurrentProject NetworkList]objectAtIndex:indexPath.row]clients]stringValue];
-//    
-//    
-//    projectClientLable2.text=[self show:[[IPaval objectAtIndex:3] stringValue] and:[[IPaval objectAtIndex:2] stringValue] and:[[IPaval objectAtIndex:1] stringValue] and:[[IPaval objectAtIndex:0] stringValue] and:sub];
-//
-//    
+    [lable200 setText:[[[currentProject NetworkList] objectAtIndex:indexPath.row]NetworkName]];
+    
+    UIImageView *recipeImageView = (UIImageView *)[cell viewWithTag:210];
+    recipeImageView.image = [UIImage imageNamed:@"side_icon.png"];
+
     
     return cell;
     

@@ -34,12 +34,20 @@ UIBarButtonItem *deleteButton,*renameButton,*editButton,*addButton;
 int  myindex;
 
 
+-(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    return YES;
+    
+}
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
     
     if(edithEnable)
         {
+            [[collectionView cellForItemAtIndexPath:indexPath]viewWithTag:100].hidden=YES;
+
             [cellSelected addObject:[ProjectList objectAtIndex:indexPath.row]];
             NSLog(@"counter1::%lu",(unsigned long)[cellSelected count]);
             if ([cellSelected count]==0) {
@@ -55,16 +63,18 @@ int  myindex;
             } else{
                 renameButton.enabled=NO;
             }
-
+            
         }
+    
     
     
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
-  
+
     if(edithEnable)
     {
+        [[collectionView cellForItemAtIndexPath:indexPath]viewWithTag:100].hidden=NO;
 
         [cellSelected removeObject:[ProjectList objectAtIndex:indexPath.row]];
         NSLog(@"counter2::%lu",(unsigned long)[cellSelected count]);
@@ -147,6 +157,24 @@ int  myindex;
 {
     [super viewDidLoad];
     
+   // self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+
+    self.navigationController.navigationBar.barTintColor=[UIColor blackColor];
+    
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    [UIColor whiteColor],NSForegroundColorAttributeName,
+                                    [UIColor whiteColor],NSBackgroundColorAttributeName,nil];
+    
+    self.navigationController.navigationBar.titleTextAttributes = textAttributes;
+
+    
+
+    
+    
+    
+    
     /////
     deleteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteAction:)];
     
@@ -157,10 +185,27 @@ int  myindex;
     
     
     editButton = [[UIBarButtonItem alloc] initWithTitle:(@"edit") style:UIBarButtonItemStyleBordered target:self action:@selector(editAction:)];
-   
-    self.navigationItem.leftBarButtonItems = @[addButton];
 
-   /////
+    
+    
+//    UIImage *image = [UIImage imageNamed:@"edit.png"];
+//    CGRect buttonFrame = CGRectMake(0, 0, image.size.width, image.size.height);
+//    
+//    UIButton *button = [[UIButton alloc] initWithFrame:buttonFrame];
+//    [button addTarget:self action:@selector(editAction:) forControlEvents:UIControlEventTouchUpInside];
+//    [button setImage:image forState:UIControlStateNormal];
+//    
+//    editButton= [[UIBarButtonItem alloc] initWithCustomView:button];
+//    self.navigationItem.rightBarButtonItems=@[editButton];
+//    
+//    
+//    
+//    self.navigationItem.leftBarButtonItems = @[addButton];
+    
+    /////
+    
+    
+    
     deleteButton.enabled=NO;
     renameButton.enabled=NO;
    
@@ -212,6 +257,7 @@ int  myindex;
         
         // Change the sharing mode to NO
         self.collectionView.allowsMultipleSelection = NO;
+       
         self.editButton.title = @"Edit";
         
         self.plusHidden.enabled=YES;
@@ -234,6 +280,7 @@ int  myindex;
         self.collectionView.allowsMultipleSelection = YES;
         self.plusHidden.enabled=NO;
         self.editButton.title = @"Done";
+
         [self.collectionView reloadData];
       //  [self.editButton setStyle:UIBarButtonItemStylePlain];
         
@@ -267,7 +314,7 @@ int  myindex;
         NetworkListViewController  *NLVC=[[IPNVC viewControllers]objectAtIndex:0];
        
         IPNVC=[cvc.viewControllers objectAtIndex:1];
-        
+
         ipViewController *IPVC=[[IPNVC viewControllers]objectAtIndex:0];
         
         
@@ -365,12 +412,29 @@ int  myindex;
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *identifier = @"Cell";
+
+    
+    
+    
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:@"back.png"] drawInRect:self.view.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    self.collectionView.backgroundColor = [UIColor colorWithPatternImage:image];
+    
+    
     
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
 
+    
+    
     //that is icon image that show in first page
     UIImageView *recipeImageView = (UIImageView *)[cell viewWithTag:100];
-    recipeImageView.image = [UIImage imageNamed:@"projectIcon.ico"];
+    recipeImageView.image = [UIImage imageNamed:@"proj-icon.png"];
+
+    UIImageView *hoverImage = (UIImageView *)[cell viewWithTag:110];
+    hoverImage.image=[UIImage imageNamed:@"delete.png"];
     
     //show the project name under project icon in collection
     Project *currentProject=[[Project alloc]init];
@@ -382,11 +446,18 @@ int  myindex;
     [currentProject setProjectName:[[ProjectList objectAtIndex:indexPath.row] ProjectName]];
     label200.text =[currentProject ProjectName];
     if (edithEnable) {
-        cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"delete.png"]];
-
-    }
+//        cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"delete.png"]];
+       
+        if (cell.selected==YES) {
+            recipeImageView.hidden=YES;
+        }else{
+            recipeImageView.hidden=NO;
+        }
+        
+        
+          }
     
-  //   recipeImageView.image = [UIImage imageNamed:@"delete.png"];
+  //
 
 
     return cell;

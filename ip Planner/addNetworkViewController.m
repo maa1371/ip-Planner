@@ -58,11 +58,73 @@
 {
     return YES;
 }
+//header of static group
+
+-    (void) tableView : (UITableView*) tableView
+willDisplayHeaderView : (UIView*) view
+           forSection : (NSInteger) section {
+    [[((UITableViewHeaderFooterView*) view) textLabel] setTextColor : [UIColor whiteColor]];
+    //    [[((UITableViewHeaderFooterView*) view) textLabel] setFont:[UIFont fontWithName:@"System" size:72]];
+    [[((UITableViewHeaderFooterView*) view) textLabel] setFont:[UIFont systemFontOfSize:24]];
+    
+}
+////////////////////////////
+
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    ///text field
+    
+    
+    self.networkName.layer.cornerRadius=8.0f;
+    self.clientNumber.layer.cornerRadius=8.0f;
+    self.serverNumber.layer.cornerRadius=8.0f;
+    
+    self.networkName.layer.masksToBounds=YES;
+    self.clientNumber.layer.masksToBounds=YES;
+    self.serverNumber.layer.masksToBounds=YES;
+    
+    self.networkName.layer.borderColor=[[UIColor whiteColor]CGColor];
+    self.clientNumber.layer.borderColor=[[UIColor whiteColor]CGColor];
+    self.serverNumber.layer.borderColor=[[UIColor whiteColor]CGColor];
+    
+    self.networkName.layer.borderWidth= 1.5f;
+    self.clientNumber.layer.borderWidth= 1.5f;
+    self.serverNumber.layer.borderWidth= 1.5f;
+    
+    self.networkName.textColor=[UIColor whiteColor];
+    self.clientNumber.textColor=[UIColor whiteColor];
+    self.serverNumber.textColor=[UIColor whiteColor];
+    
+    
+    //////////////////////////////
+    
+    
+    
+    ///////////
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:@"back.png"] drawInRect:self.view.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+    ////////////////////
+    
+    self.navigationController.navigationBar.barTintColor=[UIColor blackColor];
+    
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    [UIColor whiteColor],NSForegroundColorAttributeName,
+                                    [UIColor whiteColor],NSBackgroundColorAttributeName,nil];
+    
+    self.navigationController.navigationBar.titleTextAttributes = textAttributes;
+    
+    /////////
+    
+    
     saveButton.enabled=NO;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

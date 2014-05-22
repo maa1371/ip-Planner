@@ -67,6 +67,7 @@ int ip1,ip2,ip3,ip4,subnet1,subnet2,subnet3,subnet4,subnet;
 // returns the # of rows in each component..
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component;
 {
+    
     if (component==4) {
         return 33;
         
@@ -83,7 +84,6 @@ int ip1,ip2,ip3,ip4,subnet1,subnet2,subnet3,subnet4,subnet;
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row   inComponent:(NSInteger)component
 {
-    
     
     
     switch (component) {
@@ -158,10 +158,13 @@ int ip1,ip2,ip3,ip4,subnet1,subnet2,subnet3,subnet4,subnet;
     if( [clientCounter intValue] < ipNumber)
     {
         self.MapButton.enabled = YES;
+        self.MapButton.tintColor=[UIColor grayColor];
         
     }else
     {
         self.MapButton.enabled = NO;
+        self.MapButton.tintColor=[UIColor whiteColor];
+
         
     }
     
@@ -226,10 +229,52 @@ int ip1,ip2,ip3,ip4,subnet1,subnet2,subnet3,subnet4,subnet;
     return pow;
     
 }
+///header of static group
+
+-    (void) tableView : (UITableView*) tableView
+willDisplayHeaderView : (UIView*) view
+           forSection : (NSInteger) section {
+    [[((UITableViewHeaderFooterView*) view) textLabel] setTextColor : [UIColor whiteColor]];
+    //    [[((UITableViewHeaderFooterView*) view) textLabel] setFont:[UIFont fontWithName:@"System" size:72]];
+    [[((UITableViewHeaderFooterView*) view) textLabel] setFont:[UIFont systemFontOfSize:16]];
+    
+}
+////////////////////////////
+
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
+    
+    ///////////
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:@"back.png"] drawInRect:self.view.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+    ////////////////////
+    
+    self.navigationController.navigationBar.barTintColor=[UIColor blackColor];
+    
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    [UIColor whiteColor],NSForegroundColorAttributeName,
+                                    [UIColor whiteColor],NSBackgroundColorAttributeName,nil];
+    
+    self.navigationController.navigationBar.titleTextAttributes = textAttributes;
+    
+    
+    ///tab bar
+    
+    self.tabBarController.tabBar.barTintColor=[UIColor blackColor];
+    self.tabBarController.tabBar.tintColor=[UIColor whiteColor];
+    /////////////
+    
+    
     
     int item1,item2,item3,item4,sub=0;
     item1=200;
@@ -259,12 +304,22 @@ int ip1,ip2,ip3,ip4,subnet1,subnet2,subnet3,subnet4,subnet;
     if( [clientCounter intValue] < ipNumber)
     {
         self.MapButton.enabled = NO;
+        self.MapButton.tintColor=[UIColor grayColor];
+
         
     }else
     {
         self.MapButton.enabled = YES;
+        self.MapButton.tintColor=[UIColor whiteColor];
+
         
     }
+    
+    self.MapButton.layer.cornerRadius=8.0f;
+    self.MapButton.layer.masksToBounds=YES;
+    self.MapButton.layer.borderColor=[[UIColor blackColor]CGColor];
+    self.MapButton.layer.borderWidth= 2.5f;
+
     
     // [self.MapButton setTitleTextAttributes:[UIColor lightGrayColor] forState:UIControlStateNormal];
     

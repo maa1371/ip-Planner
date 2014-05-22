@@ -16,6 +16,8 @@
 @property Project * currentProject;
 
 @property (weak, nonatomic) IBOutlet UIPickerView *picker;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *MapButton;
+//@property (weak, nonatomic) IBOutlet UIBarButtonItem *MapButton;
+@property (weak, nonatomic) IBOutlet UIButton *MapButton;
+
 -(NSNumber *)clientCount:(Project *)iProject;
 @end
