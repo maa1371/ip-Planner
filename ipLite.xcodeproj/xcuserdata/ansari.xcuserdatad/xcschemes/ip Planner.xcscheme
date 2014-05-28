@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E8F2DB02190AA6DA00CA760A"
-               BuildableName = "ip Planner.app"
-               BlueprintName = "ip Planner"
-               ReferencedContainer = "container:ip Planner.xcodeproj">
+               BuildableName = "ipLite.app"
+               BlueprintName = "ipLite"
+               ReferencedContainer = "container:ipLite.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E8F2DB26190AA6DA00CA760A"
-               BuildableName = "ip PlannerTests.xctest"
-               BlueprintName = "ip PlannerTests"
-               ReferencedContainer = "container:ip Planner.xcodeproj">
+               BuildableName = "ipLiteTests.xctest"
+               BlueprintName = "ipLiteTests"
+               ReferencedContainer = "container:ipLite.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E8F2DB02190AA6DA00CA760A"
-            BuildableName = "ip Planner.app"
-            BlueprintName = "ip Planner"
-            ReferencedContainer = "container:ip Planner.xcodeproj">
+            BuildableName = "ipLite.app"
+            BlueprintName = "ipLite"
+            ReferencedContainer = "container:ipLite.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E8F2DB02190AA6DA00CA760A"
-            BuildableName = "ip Planner.app"
-            BlueprintName = "ip Planner"
-            ReferencedContainer = "container:ip Planner.xcodeproj">
+            BuildableName = "ipLite.app"
+            BlueprintName = "ipLite"
+            ReferencedContainer = "container:ipLite.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E8F2DB02190AA6DA00CA760A"
-            BuildableName = "ip Planner.app"
-            BlueprintName = "ip Planner"
-            ReferencedContainer = "container:ip Planner.xcodeproj">
+            BuildableName = "ipLite.app"
+            BlueprintName = "ipLite"
+            ReferencedContainer = "container:ipLite.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

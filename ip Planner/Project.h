@@ -15,6 +15,7 @@
 @property (strong,nonatomic) NSString  * ProjectName;
 @property (strong,nonatomic) NSMutableArray * NetworkList ;
 @property (strong,nonatomic) ip * NetworkIp;
+@property (strong,nonatomic) NSNumber *projectID;
 
 
 

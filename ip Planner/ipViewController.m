@@ -12,6 +12,9 @@
 #import "mapNavViewController.h"
 #import "MapDetailsViewController.h"
 #import "mapNavigationViewController.h"
+#import "AppDelegate.h"
+#import <CoreData/CoreData.h>
+
 @interface ipViewController ()
 
 @end
@@ -32,6 +35,8 @@
 NSMutableArray *binarryIP;
 int ip1,ip2,ip3,ip4,subnet1,subnet2,subnet3,subnet4,subnet;
 
+NSArray *fetchedObjects;
+NSManagedObject *selectedObject;
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
@@ -48,12 +53,13 @@ int ip1,ip2,ip3,ip4,subnet1,subnet2,subnet3,subnet4,subnet;
         NSNumber *ip33=[NSNumber numberWithInt:ip2];
         NSNumber *ip44=[NSNumber numberWithInt:ip1];
         NSNumber *subnet55=[NSNumber numberWithInt:subnet];
+        
         NSMutableArray *ipAval=[[NSMutableArray alloc]initWithObjects:ip11,ip22,ip33,ip44,subnet55 ,nil];
         
         NMVC.IPaval=ipAval;
         
         
-        NSLog(@"here %d,%d,%d,%d",[ip11 intValue],[ip22 intValue],[ip33 intValue],[ip44 intValue]);
+      //  NSLog(@"here %d,%d,%d,%d",[ip11 intValue],[ip22 intValue],[ip33 intValue],[ip44 intValue]);
         
     }
     
@@ -88,16 +94,16 @@ int ip1,ip2,ip3,ip4,subnet1,subnet2,subnet3,subnet4,subnet;
     
     switch (component) {
         case 0:
-            [[currentProject NetworkIp]setIp1:[NSNumber numberWithInt:(int)row]];
+            [[currentProject NetworkIp]setIp4:[NSNumber numberWithInt:(int)row]];
             break;
         case 1:
-            [[currentProject NetworkIp]setIp2:[NSNumber numberWithInt:(int)row]];
-            break;
-        case 2:
             [[currentProject NetworkIp]setIp3:[NSNumber numberWithInt:(int)row]];
             break;
+        case 2:
+            [[currentProject NetworkIp]setIp2:[NSNumber numberWithInt:(int)row]];
+            break;
         case 3:
-            [[currentProject NetworkIp]setIp4:[NSNumber numberWithInt:(int)row]];
+            [[currentProject NetworkIp]setIp1:[NSNumber numberWithInt:(int)row]];
             break;
         case 4:
             [[currentProject NetworkIp]setSubnetMask:[NSNumber numberWithInt:(int)row]];
@@ -108,8 +114,16 @@ int ip1,ip2,ip3,ip4,subnet1,subnet2,subnet3,subnet4,subnet;
     
     subnet=[[[currentProject NetworkIp] SubnetMask]intValue];
     
-    
-    
+    NSMutableArray *iIP=[[NSMutableArray alloc]initWithObjects:
+                         [[currentProject NetworkIp]ip4],
+                         [[currentProject NetworkIp]ip3],
+                         [[currentProject NetworkIp]ip2],
+                         [[currentProject NetworkIp]ip1],
+                         [[currentProject NetworkIp]SubnetMask]
+                        , nil];
+   
+    [self UpdateIP:iIP];
+
     
     if (subnet<=32 && 24<subnet) {
         NSLog(@"it is there");
@@ -277,11 +291,14 @@ willDisplayHeaderView : (UIView*) view
     
     
     int item1,item2,item3,item4,sub=0;
-    item1=200;
-    item2=200;
-    item3=200;
-    item4=0;
-    sub=24;
+    
+    
+    item1=[[[currentProject NetworkIp]ip4]intValue];
+    item2=[[[currentProject NetworkIp]ip3]intValue];
+    item3=[[[currentProject NetworkIp]ip2]intValue];
+    item4=[[[currentProject NetworkIp]ip1]intValue];
+    sub=[[[currentProject NetworkIp]SubnetMask]intValue];
+    
     
     [self.picker selectRow:item1 inComponent:0 animated:YES];
     [self.picker selectRow:item2 inComponent:1 animated:YES];
@@ -289,12 +306,12 @@ willDisplayHeaderView : (UIView*) view
     [self.picker selectRow:item4 inComponent:3 animated:YES];
     [self.picker selectRow:sub inComponent:4 animated:YES];
     
-    [[currentProject NetworkIp]setIp1:[NSNumber numberWithInt:item1]];
-    [[currentProject NetworkIp]setIp2:[NSNumber numberWithInt:item2]];
-    [[currentProject NetworkIp]setIp3:[NSNumber numberWithInt:item3 ]];
-    [[currentProject NetworkIp]setIp4:[NSNumber numberWithInt:item4 ]];
-    [[currentProject NetworkIp]setSubnetMask:[NSNumber numberWithInt:sub]];
-    
+//    [[currentProject NetworkIp]setIp1:[NSNumber numberWithInt:item1]];
+//    [[currentProject NetworkIp]setIp2:[NSNumber numberWithInt:item2]];
+//    [[currentProject NetworkIp]setIp3:[NSNumber numberWithInt:item3 ]];
+//    [[currentProject NetworkIp]setIp4:[NSNumber numberWithInt:item4 ]];
+//    [[currentProject NetworkIp]setSubnetMask:[NSNumber numberWithInt:sub]];
+//    
     //binarryIP=[[NSMutableArray alloc]init];
     
     self.MapButton.enabled = NO;
@@ -340,6 +357,104 @@ willDisplayHeaderView : (UIView*) view
 //[UIView]
 }
 
+-(NSMutableArray *)loadIP{
+    int index=0;
+    int end=0;
+    for (int i=0;end==0;i++ ) {
+        
+        if ([[ProjectList objectAtIndex:i] isEqual:currentProject]) {
+            end=1;
+            index=i;
+        }
+    }
+    
+        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+        NSManagedObjectContext *context = [delegate managedObjectContext];
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription
+                                       entityForName:@"Project" inManagedObjectContext:context];
+        [fetchRequest setEntity:entity];
+        NSError *error;
+        fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+        
+        
+        
+        
+            NSManagedObject *obj=[ fetchedObjects objectAtIndex:index];
+    
+    int ip1,ip2,ip3,ip4,sub;
+    
+            ip1=[[obj valueForKey:@"ip1"]intValue];
+            ip2=[[obj valueForKey:@"ip2"]intValue];
+            ip3=[[obj valueForKey:@"ip3"]intValue];
+            ip4=[[obj valueForKey:@"ip4"]intValue];
+            sub=[[obj valueForKey:@"sub"]intValue];
 
+    return    [[NSMutableArray alloc]initWithObjects:[NSNumber numberWithInt:ip1],
+                                                      [NSNumber numberWithInt:ip1],
+                                                      [NSNumber numberWithInt:ip1],
+                                                      [NSNumber numberWithInt:ip1],
+                                                      [NSNumber numberWithInt:sub], nil];
+}
+
+-(void)UpdateIP:(NSMutableArray *)IP{
+    
+    int index=0;
+    int end=0;
+    
+    for (int i=0;end==0;i++ ) {
+        
+        if ([[ProjectList objectAtIndex:i] isEqual:currentProject]) {
+            end=1;
+            index=i;
+        }
+    }
+    
+    
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    
+    NSManagedObjectContext *context = [delegate managedObjectContext];
+    
+    NSMutableArray *devices;
+    
+    NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Project"];
+    
+    devices = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    
+    
+    
+    NSManagedObject *selectedDevice=[devices objectAtIndex:index];
+    
+    
+    if (selectedDevice) {
+        
+        
+        
+        
+        
+        
+        [selectedDevice setValue:[IP objectAtIndex:0] forKey:@"ip1"];
+        [selectedDevice setValue:[IP objectAtIndex:1] forKey:@"ip2"];
+        [selectedDevice setValue:[IP objectAtIndex:2] forKey:@"ip3"];
+        [selectedDevice setValue:[IP objectAtIndex:3] forKey:@"ip4"];
+        [selectedDevice setValue:[IP objectAtIndex:4] forKey:@"sub"];
+        
+        
+    }
+    
+    
+    
+    
+    
+    NSError *error;
+    if (![context save:&error]) {
+        NSLog(@"Error:%@", error);
+    }
+    NSLog(@"Data saved");
+    
+    
+}
 
 @end

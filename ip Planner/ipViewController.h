@@ -20,4 +20,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *MapButton;
 
 -(NSNumber *)clientCount:(Project *)iProject;
+-(void)UpdateIP:(NSMutableArray *)IP;
+-(NSMutableArray *)loadIP;
 @end

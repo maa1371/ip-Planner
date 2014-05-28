@@ -15,6 +15,9 @@
 @property (strong,nonatomic) NSNumber *clients;
 @property  (strong,nonatomic) NSNumber *Servers;
 @property (strong,nonatomic) ip * eachNetworkIP;
+@property (strong,nonatomic) NSNumber * NetworkID;
+@property (strong,nonatomic) NSNumber * fromThisProjectID;
+
 
 
 //-(void) ShowNetworkMap;

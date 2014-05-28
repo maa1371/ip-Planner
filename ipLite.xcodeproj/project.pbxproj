@@ -8,16 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		E801C77619181B3100111B3F /* mapNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E801C77519181B3100111B3F /* mapNavViewController.m */; };
+		E8072116192E411F00CA4122 /* ipLiteDataBase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E8072114192E411F00CA4122 /* ipLiteDataBase.xcdatamodeld */; };
+		E8072118192E6CA900CA4122 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8072117192E6CA900CA4122 /* CoreData.framework */; };
 		E81761FF190EAF7E003FBBDC /* ipNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E81761FE190EAF7E003FBBDC /* ipNavigationViewController.m */; };
 		E8176208190EC3D0003FBBDC /* customtabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8176207190EC3D0003FBBDC /* customtabViewController.m */; };
 		E82E737B190AC72B00E9B510 /* ProjectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E737A190AC72B00E9B510 /* ProjectIcon.png */; };
 		E82E737D190AC7E900E9B510 /* projectIcon.ico in Resources */ = {isa = PBXBuildFile; fileRef = E82E737C190AC7E900E9B510 /* projectIcon.ico */; };
 		E82E7380190AC90F00E9B510 /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = E82E737F190AC90F00E9B510 /* Project.m */; };
+		E83FE933192E31C4008B12D2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E83FE932192E31C4008B12D2 /* Default-568h@2x.png */; };
 		E8417495190E793B00228045 /* ip.m in Sources */ = {isa = PBXBuildFile; fileRef = E8417494190E793B00228045 /* ip.m */; };
 		E8417498190E7BE600228045 /* Netwok.m in Sources */ = {isa = PBXBuildFile; fileRef = E8417497190E7BE600228045 /* Netwok.m */; };
 		E84174AA190E883000228045 /* NetworkListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84174A9190E883000228045 /* NetworkListViewController.m */; };
 		E84174B0190E892D00228045 /* EditNetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84174AF190E892D00228045 /* EditNetworkViewController.m */; };
 		E8480136192E190A00C75ED4 /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = E8480135192E190A00C75ED4 /* delete.png */; };
+		E84E79C1192F2196003A5D21 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E84E79C0192F2196003A5D21 /* Images.xcassets */; };
+		E84E79CA192F22CF003A5D21 /* 640-1136.png in Resources */ = {isa = PBXBuildFile; fileRef = E84E79C5192F22CF003A5D21 /* 640-1136.png */; };
+		E84E79CB192F22CF003A5D21 /* 768-1024.png in Resources */ = {isa = PBXBuildFile; fileRef = E84E79C6192F22CF003A5D21 /* 768-1024.png */; };
+		E84E79CC192F22CF003A5D21 /* 1024-768.png in Resources */ = {isa = PBXBuildFile; fileRef = E84E79C7192F22CF003A5D21 /* 1024-768.png */; };
+		E84E79CD192F22CF003A5D21 /* 1536-2048.png in Resources */ = {isa = PBXBuildFile; fileRef = E84E79C8192F22CF003A5D21 /* 1536-2048.png */; };
+		E84E79CE192F22CF003A5D21 /* 2048-1536.png in Resources */ = {isa = PBXBuildFile; fileRef = E84E79C9192F22CF003A5D21 /* 2048-1536.png */; };
+		E84E79D0192F235A003A5D21 /* Images-2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E84E79CF192F235A003A5D21 /* Images-2.xcassets */; };
 		E859D788192289C700D0AEB9 /* addNetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E859D787192289C700D0AEB9 /* addNetworkViewController.m */; };
 		E862E8C5192B88E0007862F0 /* mapNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E862E8C4192B88E0007862F0 /* mapNavigationViewController.m */; };
 		E8638BCF19215D7B0096CDF7 /* photo-frame-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = E8638BCE19215D7B0096CDF7 /* photo-frame-selected.png */; };
@@ -41,6 +51,7 @@
 		E8F2DB35190AA6DA00CA760A /* ip_PlannerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F2DB34190AA6DA00CA760A /* ip_PlannerTests.m */; };
 		E8F40099192B51C200196CD4 /* MapDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F40098192B51C200196CD4 /* MapDetailsViewController.m */; };
 		E8F9CD6A192DDACD0086686E /* proj-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F9CD69192DDACD0086686E /* proj-icon.png */; };
+		E8FCCE1E1934B8A100680E5E /* ipLiteDB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E8FCCE1C1934B8A100680E5E /* ipLiteDB.xcdatamodeld */; };
 		E8FF208B1924D96300032EAB /* AddProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FF208A1924D96300032EAB /* AddProjectViewController.m */; };
 		E8FF208E1924DC3A00032EAB /* DisplayNetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FF208D1924DC3A00032EAB /* DisplayNetworkViewController.m */; };
 		E8FF20911924E4B000032EAB /* ipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FF20901924E4B000032EAB /* ipViewController.m */; };
@@ -59,6 +70,8 @@
 /* Begin PBXFileReference section */
 		E801C77419181B3100111B3F /* mapNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mapNavViewController.h; sourceTree = "<group>"; };
 		E801C77519181B3100111B3F /* mapNavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mapNavViewController.m; sourceTree = "<group>"; };
+		E8072115192E411F00CA4122 /* ipLiteDataBase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ipLiteDataBase.xcdatamodel; sourceTree = "<group>"; };
+		E8072117192E6CA900CA4122 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		E81761FD190EAF7E003FBBDC /* ipNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ipNavigationViewController.h; sourceTree = "<group>"; };
 		E81761FE190EAF7E003FBBDC /* ipNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ipNavigationViewController.m; sourceTree = "<group>"; };
 		E8176206190EC3D0003FBBDC /* customtabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customtabViewController.h; sourceTree = "<group>"; };
@@ -68,6 +81,7 @@
 		E82E737C190AC7E900E9B510 /* projectIcon.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = projectIcon.ico; sourceTree = "<group>"; };
 		E82E737E190AC90F00E9B510 /* Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Project.h; sourceTree = "<group>"; };
 		E82E737F190AC90F00E9B510 /* Project.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Project.m; sourceTree = "<group>"; };
+		E83FE932192E31C4008B12D2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		E8417493190E793B00228045 /* ip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ip.h; sourceTree = "<group>"; };
 		E8417494190E793B00228045 /* ip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ip.m; sourceTree = "<group>"; };
 		E8417496190E7BE600228045 /* Netwok.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Netwok.h; sourceTree = "<group>"; };
@@ -77,6 +91,14 @@
 		E84174AE190E892D00228045 /* EditNetworkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditNetworkViewController.h; sourceTree = "<group>"; };
 		E84174AF190E892D00228045 /* EditNetworkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditNetworkViewController.m; sourceTree = "<group>"; };
 		E8480135192E190A00C75ED4 /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
+		E84E79C0192F2196003A5D21 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ipLite/Images.xcassets; sourceTree = "<group>"; };
+		E84E79C4192F22B5003A5D21 /* 640-960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "640-960.png"; sourceTree = "<group>"; };
+		E84E79C5192F22CF003A5D21 /* 640-1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "640-1136.png"; sourceTree = "<group>"; };
+		E84E79C6192F22CF003A5D21 /* 768-1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "768-1024.png"; sourceTree = "<group>"; };
+		E84E79C7192F22CF003A5D21 /* 1024-768.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1024-768.png"; sourceTree = "<group>"; };
+		E84E79C8192F22CF003A5D21 /* 1536-2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1536-2048.png"; sourceTree = "<group>"; };
+		E84E79C9192F22CF003A5D21 /* 2048-1536.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2048-1536.png"; sourceTree = "<group>"; };
+		E84E79CF192F235A003A5D21 /* Images-2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Images-2.xcassets"; path = "ipLite/Images-2.xcassets"; sourceTree = "<group>"; };
 		E859D786192289C700D0AEB9 /* addNetworkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addNetworkViewController.h; sourceTree = "<group>"; };
 		E859D787192289C700D0AEB9 /* addNetworkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addNetworkViewController.m; sourceTree = "<group>"; };
 		E862E8C3192B88E0007862F0 /* mapNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mapNavigationViewController.h; sourceTree = "<group>"; };
@@ -87,22 +109,22 @@
 		E8A6BBE9190EC516006DE11A /* ProjectListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectListViewController.m; sourceTree = "<group>"; };
 		E8DF383A190E8AF400C98F07 /* NetworkMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkMapViewController.h; path = ../NetworkMapViewController.h; sourceTree = "<group>"; };
 		E8DF383B190E8AF400C98F07 /* NetworkMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkMapViewController.m; path = ../NetworkMapViewController.m; sourceTree = "<group>"; };
-		E8F2DB03190AA6DA00CA760A /* ip Planner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ip Planner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8F2DB03190AA6DA00CA760A /* ipLite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ipLite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8F2DB06190AA6DA00CA760A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E8F2DB08190AA6DA00CA760A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		E8F2DB0A190AA6DA00CA760A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		E8F2DB0E190AA6DA00CA760A /* ip Planner-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ip Planner-Info.plist"; sourceTree = "<group>"; };
+		E8F2DB0E190AA6DA00CA760A /* ipLite-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ipLite-Info.plist"; sourceTree = "<group>"; };
 		E8F2DB10190AA6DA00CA760A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E8F2DB12190AA6DA00CA760A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		E8F2DB14190AA6DA00CA760A /* ip Planner-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ip Planner-Prefix.pch"; sourceTree = "<group>"; };
+		E8F2DB14190AA6DA00CA760A /* ipLite-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ipLite-Prefix.pch"; sourceTree = "<group>"; };
 		E8F2DB15190AA6DA00CA760A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E8F2DB16190AA6DA00CA760A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E8F2DB19190AA6DA00CA760A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		E8F2DB1C190AA6DA00CA760A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		E8F2DB21190AA6DA00CA760A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		E8F2DB27190AA6DA00CA760A /* ip PlannerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ip PlannerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8F2DB27190AA6DA00CA760A /* ipLiteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ipLiteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8F2DB28190AA6DA00CA760A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		E8F2DB30190AA6DA00CA760A /* ip PlannerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ip PlannerTests-Info.plist"; sourceTree = "<group>"; };
+		E8F2DB30190AA6DA00CA760A /* ipLiteTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ipLiteTests-Info.plist"; sourceTree = "<group>"; };
 		E8F2DB32190AA6DA00CA760A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E8F2DB34190AA6DA00CA760A /* ip_PlannerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ip_PlannerTests.m; sourceTree = "<group>"; };
 		E8F40097192B51C200196CD4 /* MapDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapDetailsViewController.h; sourceTree = "<group>"; };
@@ -115,6 +137,7 @@
 		E8F9CD6F192DE5690086686E /* 40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 40.png; path = ../40.png; sourceTree = "<group>"; };
 		E8F9CD70192DE5830086686E /* 58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 58.png; path = ../58.png; sourceTree = "<group>"; };
 		E8F9CD71192DE5920086686E /* 29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 29.png; path = ../29.png; sourceTree = "<group>"; };
+		E8FCCE1D1934B8A100680E5E /* ipLiteDB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ipLiteDB.xcdatamodel; sourceTree = "<group>"; };
 		E8FF20891924D96300032EAB /* AddProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddProjectViewController.h; path = ../AddProjectViewController.h; sourceTree = "<group>"; };
 		E8FF208A1924D96300032EAB /* AddProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddProjectViewController.m; path = ../AddProjectViewController.m; sourceTree = "<group>"; };
 		E8FF208C1924DC3A00032EAB /* DisplayNetworkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayNetworkViewController.h; sourceTree = "<group>"; };
@@ -128,6 +151,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8072118192E6CA900CA4122 /* CoreData.framework in Frameworks */,
 				E8F2DB09190AA6DA00CA760A /* CoreGraphics.framework in Frameworks */,
 				E8F2DB0B190AA6DA00CA760A /* UIKit.framework in Frameworks */,
 				E8F2DB07190AA6DA00CA760A /* Foundation.framework in Frameworks */,
@@ -284,6 +308,17 @@
 		E8F2DAFA190AA6DA00CA760A = {
 			isa = PBXGroup;
 			children = (
+				E8FCCE1C1934B8A100680E5E /* ipLiteDB.xcdatamodeld */,
+				E8072114192E411F00CA4122 /* ipLiteDataBase.xcdatamodeld */,
+				E84E79CF192F235A003A5D21 /* Images-2.xcassets */,
+				E84E79C5192F22CF003A5D21 /* 640-1136.png */,
+				E84E79C6192F22CF003A5D21 /* 768-1024.png */,
+				E84E79C7192F22CF003A5D21 /* 1024-768.png */,
+				E84E79C8192F22CF003A5D21 /* 1536-2048.png */,
+				E84E79C9192F22CF003A5D21 /* 2048-1536.png */,
+				E84E79C4192F22B5003A5D21 /* 640-960.png */,
+				E84E79C0192F2196003A5D21 /* Images.xcassets */,
+				E83FE932192E31C4008B12D2 /* Default-568h@2x.png */,
 				E8F2DB0C190AA6DA00CA760A /* ip Planner */,
 				E8F2DB2E190AA6DA00CA760A /* ip PlannerTests */,
 				E8F2DB05190AA6DA00CA760A /* Frameworks */,
@@ -294,8 +329,8 @@
 		E8F2DB04190AA6DA00CA760A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E8F2DB03190AA6DA00CA760A /* ip Planner.app */,
-				E8F2DB27190AA6DA00CA760A /* ip PlannerTests.xctest */,
+				E8F2DB03190AA6DA00CA760A /* ipLite.app */,
+				E8F2DB27190AA6DA00CA760A /* ipLiteTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -303,6 +338,7 @@
 		E8F2DB05190AA6DA00CA760A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E8072117192E6CA900CA4122 /* CoreData.framework */,
 				E8F2DB06190AA6DA00CA760A /* Foundation.framework */,
 				E8F2DB08190AA6DA00CA760A /* CoreGraphics.framework */,
 				E8F2DB0A190AA6DA00CA760A /* UIKit.framework */,
@@ -343,10 +379,10 @@
 				E8638BCE19215D7B0096CDF7 /* photo-frame-selected.png */,
 				E82E737C190AC7E900E9B510 /* projectIcon.ico */,
 				E82E737A190AC72B00E9B510 /* ProjectIcon.png */,
-				E8F2DB0E190AA6DA00CA760A /* ip Planner-Info.plist */,
+				E8F2DB0E190AA6DA00CA760A /* ipLite-Info.plist */,
 				E8F2DB0F190AA6DA00CA760A /* InfoPlist.strings */,
 				E8F2DB12190AA6DA00CA760A /* main.m */,
-				E8F2DB14190AA6DA00CA760A /* ip Planner-Prefix.pch */,
+				E8F2DB14190AA6DA00CA760A /* ipLite-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -363,7 +399,7 @@
 		E8F2DB2F190AA6DA00CA760A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E8F2DB30190AA6DA00CA760A /* ip PlannerTests-Info.plist */,
+				E8F2DB30190AA6DA00CA760A /* ipLiteTests-Info.plist */,
 				E8F2DB31190AA6DA00CA760A /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -372,9 +408,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E8F2DB02190AA6DA00CA760A /* ip Planner */ = {
+		E8F2DB02190AA6DA00CA760A /* ipLite */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E8F2DB38190AA6DA00CA760A /* Build configuration list for PBXNativeTarget "ip Planner" */;
+			buildConfigurationList = E8F2DB38190AA6DA00CA760A /* Build configuration list for PBXNativeTarget "ipLite" */;
 			buildPhases = (
 				E8F2DAFF190AA6DA00CA760A /* Sources */,
 				E8F2DB00190AA6DA00CA760A /* Frameworks */,
@@ -384,14 +420,14 @@
 			);
 			dependencies = (
 			);
-			name = "ip Planner";
+			name = ipLite;
 			productName = "ip Planner";
-			productReference = E8F2DB03190AA6DA00CA760A /* ip Planner.app */;
+			productReference = E8F2DB03190AA6DA00CA760A /* ipLite.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E8F2DB26190AA6DA00CA760A /* ip PlannerTests */ = {
+		E8F2DB26190AA6DA00CA760A /* ipLiteTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E8F2DB3B190AA6DA00CA760A /* Build configuration list for PBXNativeTarget "ip PlannerTests" */;
+			buildConfigurationList = E8F2DB3B190AA6DA00CA760A /* Build configuration list for PBXNativeTarget "ipLiteTests" */;
 			buildPhases = (
 				E8F2DB23190AA6DA00CA760A /* Sources */,
 				E8F2DB24190AA6DA00CA760A /* Frameworks */,
@@ -402,9 +438,9 @@
 			dependencies = (
 				E8F2DB2D190AA6DA00CA760A /* PBXTargetDependency */,
 			);
-			name = "ip PlannerTests";
+			name = ipLiteTests;
 			productName = "ip PlannerTests";
-			productReference = E8F2DB27190AA6DA00CA760A /* ip PlannerTests.xctest */;
+			productReference = E8F2DB27190AA6DA00CA760A /* ipLiteTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -421,7 +457,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E8F2DAFE190AA6DA00CA760A /* Build configuration list for PBXProject "ip Planner" */;
+			buildConfigurationList = E8F2DAFE190AA6DA00CA760A /* Build configuration list for PBXProject "ipLite" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -434,8 +470,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E8F2DB02190AA6DA00CA760A /* ip Planner */,
-				E8F2DB26190AA6DA00CA760A /* ip PlannerTests */,
+				E8F2DB02190AA6DA00CA760A /* ipLite */,
+				E8F2DB26190AA6DA00CA760A /* ipLiteTests */,
 			);
 		};
 /* End PBXProject section */
@@ -445,11 +481,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E84E79CE192F22CF003A5D21 /* 2048-1536.png in Resources */,
 				E8638BCF19215D7B0096CDF7 /* photo-frame-selected.png in Resources */,
 				E8F2DB1D190AA6DA00CA760A /* Main_iPad.storyboard in Resources */,
 				E8F2DB22190AA6DA00CA760A /* Images.xcassets in Resources */,
+				E84E79CD192F22CF003A5D21 /* 1536-2048.png in Resources */,
+				E84E79C1192F2196003A5D21 /* Images.xcassets in Resources */,
 				E879834C192D2AA800F26ADB /* back.png in Resources */,
+				E84E79CA192F22CF003A5D21 /* 640-1136.png in Resources */,
+				E84E79CB192F22CF003A5D21 /* 768-1024.png in Resources */,
+				E84E79D0192F235A003A5D21 /* Images-2.xcassets in Resources */,
 				E82E737B190AC72B00E9B510 /* ProjectIcon.png in Resources */,
+				E84E79CC192F22CF003A5D21 /* 1024-768.png in Resources */,
+				E83FE933192E31C4008B12D2 /* Default-568h@2x.png in Resources */,
 				E8480136192E190A00C75ED4 /* delete.png in Resources */,
 				E8F2DB1A190AA6DA00CA760A /* Main_iPhone.storyboard in Resources */,
 				E8F9CD6A192DDACD0086686E /* proj-icon.png in Resources */,
@@ -484,9 +528,11 @@
 				E8A6BBEA190EC516006DE11A /* ProjectListViewController.m in Sources */,
 				E8F40099192B51C200196CD4 /* MapDetailsViewController.m in Sources */,
 				E8F2DB13190AA6DA00CA760A /* main.m in Sources */,
+				E8072116192E411F00CA4122 /* ipLiteDataBase.xcdatamodeld in Sources */,
 				E8FF208E1924DC3A00032EAB /* DisplayNetworkViewController.m in Sources */,
 				E8FF20911924E4B000032EAB /* ipViewController.m in Sources */,
 				E82E7380190AC90F00E9B510 /* Project.m in Sources */,
+				E8FCCE1E1934B8A100680E5E /* ipLiteDB.xcdatamodeld in Sources */,
 				E8417498190E7BE600228045 /* Netwok.m in Sources */,
 				E8176208190EC3D0003FBBDC /* customtabViewController.m in Sources */,
 				E862E8C5192B88E0007862F0 /* mapNavigationViewController.m in Sources */,
@@ -508,7 +554,7 @@
 /* Begin PBXTargetDependency section */
 		E8F2DB2D190AA6DA00CA760A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E8F2DB02190AA6DA00CA760A /* ip Planner */;
+			target = E8F2DB02190AA6DA00CA760A /* ipLite */;
 			targetProxy = E8F2DB2C190AA6DA00CA760A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -627,10 +673,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-3";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ip Planner/ip Planner-Prefix.pch";
-				INFOPLIST_FILE = "ip Planner/ip Planner-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "ip Planner/ipLite-Prefix.pch";
+				INFOPLIST_FILE = "ip Planner/ipLite-Info.plist";
+				PRODUCT_NAME = ipLite;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -639,10 +686,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-3";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ip Planner/ip Planner-Prefix.pch";
-				INFOPLIST_FILE = "ip Planner/ip Planner-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "ip Planner/ipLite-Prefix.pch";
+				INFOPLIST_FILE = "ip Planner/ipLite-Info.plist";
+				PRODUCT_NAME = ipLite;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -663,8 +711,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "ip PlannerTests/ip PlannerTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "ip PlannerTests/ipLiteTests-Info.plist";
+				PRODUCT_NAME = ipLiteTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -682,8 +730,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ip Planner/ip Planner-Prefix.pch";
-				INFOPLIST_FILE = "ip PlannerTests/ip PlannerTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "ip PlannerTests/ipLiteTests-Info.plist";
+				PRODUCT_NAME = ipLiteTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -692,7 +740,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E8F2DAFE190AA6DA00CA760A /* Build configuration list for PBXProject "ip Planner" */ = {
+		E8F2DAFE190AA6DA00CA760A /* Build configuration list for PBXProject "ipLite" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E8F2DB36190AA6DA00CA760A /* Debug */,
@@ -701,7 +749,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E8F2DB38190AA6DA00CA760A /* Build configuration list for PBXNativeTarget "ip Planner" */ = {
+		E8F2DB38190AA6DA00CA760A /* Build configuration list for PBXNativeTarget "ipLite" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E8F2DB39190AA6DA00CA760A /* Debug */,
@@ -710,7 +758,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E8F2DB3B190AA6DA00CA760A /* Build configuration list for PBXNativeTarget "ip PlannerTests" */ = {
+		E8F2DB3B190AA6DA00CA760A /* Build configuration list for PBXNativeTarget "ipLiteTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E8F2DB3C190AA6DA00CA760A /* Debug */,
@@ -720,6 +768,29 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E8072114192E411F00CA4122 /* ipLiteDataBase.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E8072115192E411F00CA4122 /* ipLiteDataBase.xcdatamodel */,
+			);
+			currentVersion = E8072115192E411F00CA4122 /* ipLiteDataBase.xcdatamodel */;
+			path = ipLiteDataBase.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		E8FCCE1C1934B8A100680E5E /* ipLiteDB.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E8FCCE1D1934B8A100680E5E /* ipLiteDB.xcdatamodel */,
+			);
+			currentVersion = E8FCCE1D1934B8A100680E5E /* ipLiteDB.xcdatamodel */;
+			path = ipLiteDB.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E8F2DAFB190AA6DA00CA760A /* Project object */;
 }

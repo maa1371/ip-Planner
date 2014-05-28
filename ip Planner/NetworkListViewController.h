@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Project.h"
+#import "Netwok.h"
 
 
 
@@ -19,6 +20,9 @@
 
 @property (nonatomic, strong) NSString *selectedNation;
 
+-(void)DbAddNetwork:(Netwok *)item;;
+-(void)DbDeleteNetwork:(int)index;
+-(void)DbUpdateNetwork:(Netwok *)item;
 
 
 @end

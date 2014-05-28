@@ -25,4 +25,18 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *plusHidden;
 
 
+-(void)AddProject:(Project*)item;
+-(void)deleteProject:(int )index;
+-(void)renameProject:(Project*)item;
+
+//
+-(void)loadData;
+-(void)loadDataNet:(int) projectID this:(int)indexID;
+-(void)deleteDataNet:(int) projectID ;
+
+//-(void)addNetwork:(Netwok *)item;
+//-(void)deleteNetwork:(Netwok *)item;
+//-(void)renameNetwork:(Netwok *)item;
+
+
 @end

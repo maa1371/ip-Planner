@@ -15,6 +15,9 @@
 #import "ipNavigationViewController.h"
 #import "Netwok.h"
 #import "NetworkListViewController.h"
+#import "AppDelegate.h"
+#import <CoreData/CoreData.h>
+
 
 //#import "Netwok.h"
 
@@ -25,6 +28,9 @@
 @implementation ProjectListViewController
 
 @synthesize ProjectList ,currentIndex;
+
+NSArray *fetchedObjects;
+NSManagedObject *selectedObject;
 
 bool    replace;
 bool edithEnable;
@@ -101,12 +107,26 @@ int  myindex;
 {
     [self performSegueWithIdentifier:@"add" sender:sender];
 }
+
 -(void)deleteAction:(id)sender{
     
     for (int i=0; i<cellSelected.count; i++) {
-        [ProjectList removeObject:[cellSelected objectAtIndex:i]];
+       
+        int index=0;
+        int end=0;
+        for (int j=0;end==0 ; j++) {
+            
+            if ([[ProjectList objectAtIndex:j]isEqual:[cellSelected objectAtIndex:i]]) {
+                end=1;
+            }
+            
+            index=j;
+        }
         
+        [self deleteProject:index];
+        [ProjectList removeObject:[cellSelected objectAtIndex:i]];
     }
+    
     deleteButton.enabled=NO;
     renameButton.enabled=NO;
     [cellSelected removeAllObjects];
@@ -118,7 +138,11 @@ int  myindex;
     if (buttonIndex==1) {
         UITextField * alertTextField = [alertView textFieldAtIndex:0];
         [[ProjectList objectAtIndex:myindex]setProjectName:alertTextField.text];
+        
+        [self renameProject:[ProjectList objectAtIndex:myindex]];
+        
         [self.collectionView reloadData];
+        
 
     }else{
         [self.collectionView reloadData];
@@ -151,12 +175,16 @@ int  myindex;
     renameButton.enabled=NO;
     
     
+    
+    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    ProjectList =[[NSMutableArray alloc]init];
+
+
    // self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
 
     self.navigationController.navigationBar.barTintColor=[UIColor blackColor];
@@ -210,35 +238,36 @@ int  myindex;
     renameButton.enabled=NO;
    
     currentIndex=[[NSIndexPath alloc]init];
-    ProjectList =[[NSMutableArray alloc]init];
     edithEnable=NO;
     cellSelected=[[NSMutableArray alloc]init];
     //init project sample
-    Project *new=[[Project alloc]init];
-    [new setProjectName:@"sample Project"];
+//    Project *new=[[Project alloc]init];
+//    [new setProjectName:@"sample Project"];
+//    
+//    //create a network list for project sample
+//    Netwok *newNetwork =[[Netwok alloc]init];
+//   
+//    [newNetwork setClients:[NSNumber numberWithInt:100]];
+//    [newNetwork setServers:[NSNumber numberWithInt:10]];
+//    [newNetwork setNetworkName:@"Sample Network"];
+//    
+//    ip  *newIP =[[ip alloc]init];
+//    [newIP setIP:[NSNumber numberWithInteger:192] next2:[NSNumber numberWithInteger:168]  next3:[NSNumber numberWithInteger:1]  next4:[NSNumber numberWithInteger:0]  subnet:[NSNumber numberWithInteger:24] ];
+//    
+//    //set sample network list for sample project
+//    [new.NetworkList addObject:newNetwork];
+//    //[new.NetworkList addObject:newNetwork];
+//    //[new.NetworkList addObject:newNetwork];
+//    [new setNetworkIp:newIP];
+//    
+//    
+//    
+//    [ProjectList addObject:new];
     
-    //create a network list for project sample
-    Netwok *newNetwork =[[Netwok alloc]init];
-   
-    [newNetwork setClients:[NSNumber numberWithInt:100]];
-    [newNetwork setServers:[NSNumber numberWithInt:10]];
-    [newNetwork setNetworkName:@"Sample Network"];
-    
-    ip  *newIP =[[ip alloc]init];
-    [newIP setIP:[NSNumber numberWithInteger:192] next2:[NSNumber numberWithInteger:168]  next3:[NSNumber numberWithInteger:1]  next4:[NSNumber numberWithInteger:0]  subnet:[NSNumber numberWithInteger:24] ];
-    
-    //set sample network list for sample project
-    [new.NetworkList addObject:newNetwork];
-    //[new.NetworkList addObject:newNetwork];
-    //[new.NetworkList addObject:newNetwork];
-    [new setNetworkIp:newIP];
-    
-    
-    
-    [ProjectList addObject:new];
-    
-    
+    [self loadData];
+
    // Do any additional setup after loading the view.
+    
 }
 
 - (IBAction)editAction:(id)sender {
@@ -337,22 +366,37 @@ int  myindex;
    
     AddProjectViewController * APVC =[segue sourceViewController];
     
+    int ID=0;
+    if ([ProjectList count]==0) {
+        ID=1;
+    }else{
+        int i=[ProjectList count];
+        i--;
+        ID=[[[ProjectList objectAtIndex:i]projectID]intValue];
+        ID++;
+    }
     
     Project *newProject =[[Project alloc]init];
     
     if ([[[APVC InputProjectName ]text ]isEqualToString:@""]) {
      
         [newProject setProjectName:@"unnamed Project"];
+        [newProject setProjectID:[NSNumber numberWithInt:ID]];
         [ProjectList addObject:newProject];
     }
     else{
         [newProject setProjectName:[[APVC InputProjectName ]text]];
+        [newProject setProjectID:[NSNumber numberWithInt:ID]];
         [ProjectList addObject:newProject];
     }
+
+    [[newProject NetworkIp]setIp4:[NSNumber numberWithInt:200]];
+    [[newProject NetworkIp]setIp3:[NSNumber numberWithInt:200]];
+    [[newProject NetworkIp]setIp2:[NSNumber numberWithInt:200]];
+    [[newProject NetworkIp]setIp1:[NSNumber numberWithInt:0]];
+    [[newProject NetworkIp]setSubnetMask:[NSNumber numberWithInt:24]];
     
-    
-   
-    
+    [self AddProject:newProject];
     
     [self.collectionView  reloadData ]   ;
     
@@ -463,7 +507,305 @@ int  myindex;
     return cell;
 }
 
+-(void)AddProject:(Project *)item{
+    
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    NSManagedObjectContext *context = [delegate managedObjectContext];
+    NSManagedObject *dataRecord = [NSEntityDescription
+                                   insertNewObjectForEntityForName:@"Project"
+                                   inManagedObjectContext:context];
+    
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//    NSEntityDescription *entity = [NSEntityDescription
+//                                   entityForName:@"Project" inManagedObjectContext:context];
+//   
+//    [fetchRequest setEntity:entity];
+//    NSError *error1;
+//    fetchedObjects = [context executeFetchRequest:fetchRequest error:&error1];
+//    
+    
+    
+    
+    
+    [dataRecord setValue:[item projectID] forKey:@"projectID"];
+    [dataRecord setValue:item.ProjectName forKey:@"name"];
+    [dataRecord setValue:[[item NetworkIp] ip1] forKey:@"ip1"];
+    [dataRecord setValue:[[item NetworkIp] ip2] forKey:@"ip2"];
+    [dataRecord setValue:[[item NetworkIp] ip3] forKey:@"ip3"];
+    [dataRecord setValue:[[item NetworkIp] ip4] forKey:@"ip4"];
+    [dataRecord setValue:[[item NetworkIp] SubnetMask] forKey:@"sub"];
+
+    
+     NSError *error;
+    if (![context save:&error]) {
+        NSLog(@"Error:%@", error);
+    }
+    NSLog(@"Data saved");
+}
+
+-(void)loadDataNet:(int) projectID this:(int)indexID{
+   
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    NSManagedObjectContext *context = [delegate managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:@"Network" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSError *error;
+    fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    
+    
+    for (NSManagedObject *obj in fetchedObjects) {
+        
+        if ([[obj valueForKey:@"projectID"]intValue]==projectID) {
+        
+            Netwok *newNetwork=[[Netwok alloc]init];
+         
+            
+            [newNetwork setNetworkID:[obj valueForKey:@"networkID"]];
+            [newNetwork setFromThisProjectID:[obj valueForKey:@"projectID"]];
+            [newNetwork setNetworkName:[obj valueForKey:@"name"]];
+            [newNetwork setClients:[obj valueForKey:@"clients"]];
+            [newNetwork setServers:[obj valueForKey:@"servers"]];
+            
+
+            
+            
+            [[[ProjectList objectAtIndex:indexID]NetworkList]addObject:newNetwork];
+
+            
+        }
+        
+    }
+    
+
+}
 
 
+-(void)loadData{
+    
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    NSManagedObjectContext *context = [delegate managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:@"Project" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSError *error;
+    fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    
+
+    
+    
+    for (NSManagedObject *obj in fetchedObjects) {
+
+        Project *newProject=[[Project alloc]init];
+        
+        [newProject setProjectID:[obj valueForKey:@"projectID"]];
+        [newProject setProjectName:[obj valueForKey:@"name"]];
+        [[newProject NetworkIp]setIp4:[obj valueForKey:@"ip1"]];
+        [[newProject NetworkIp]setIp3:[obj valueForKey:@"ip2"]];
+        [[newProject NetworkIp]setIp2:[obj valueForKey:@"ip3"]];
+        [[newProject NetworkIp]setIp1:[obj valueForKey:@"ip4"]];
+        [[newProject NetworkIp]setSubnetMask:[obj valueForKey:@"sub"]];
+        
+        int amin=0;
+        
+        
+        amin=[ProjectList count];
+        
+        [ProjectList addObject:newProject];
+
+        [self loadDataNet:[newProject.projectID intValue] this:amin];
+        
+        
+        
+        
+        
+
+       // NSLog(@"id %d",[[obj valueForKey:@"projectID"] integerValue]);
+       
+        }
+    
+    
+ }
+
+-(void)deleteDataNet:(int) projectID {
+    
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    NSManagedObjectContext *context = [delegate managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:@"Network" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSError *error;
+    fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    
+    
+    
+    NSMutableArray *devices;
+    
+    NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
+    
+    NSFetchRequest *fetchRequest1 = [[NSFetchRequest alloc] initWithEntityName:@"Network"];
+    
+    devices = [[managedObjectContext executeFetchRequest:fetchRequest1 error:nil] mutableCopy];
+    
+    
+    
+    NSLog(@"main project ID %d",projectID+1);
+
+    
+    
+    for (NSManagedObject *obj in fetchedObjects) {
+        NSLog(@"project ID %d",[[obj valueForKey:@"projectID"]intValue]);
+        
+        if ([[obj valueForKey:@"projectID"]intValue]==projectID+1) {
+            
+            int index=0;
+            
+            index=[[obj valueForKey:@"networkID"]integerValue];
+            
+            [context deleteObject:[devices objectAtIndex:index-1]];
+           
+            NSLog(@"delte network index  %d of project ID :: %d",index,projectID+1);
+        
+        }
+        
+        
+    }
+    
+    
+}
+
+
+
+-(void)deleteProject:(int )index{
+    
+    
+  //  index=[ProjectList count]-index;
+    NSLog(@"index::%d",index);
+    
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+   // NSManagedObjectContext *context = [delegate managedObjectContext];
+   
+    NSManagedObjectContext *context = [delegate managedObjectContext];
+    
+    NSMutableArray *devices;
+    
+    NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Project"];
+    
+    devices = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    
+    
+    
+    
+        // Delete object from database
+        [context deleteObject:[devices objectAtIndex:index]];
+    
+    [self deleteDataNet:index];
+    
+    
+    
+        NSError *error = nil;
+        if (![context save:&error]) {
+            NSLog(@"Can't Delete! %@ %@", error, [error localizedDescription]);
+            return;
+        }
+}
+
+-(void)renameProject:(Project *)item{
+    
+    int index=0;
+    
+    
+    for (int i=0; i<[ProjectList count]; i++) {
+        if ([[ProjectList objectAtIndex:i]isEqual:item]==YES) {
+            index=i;
+        }
+    }
+    
+    
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    
+    NSManagedObjectContext *context = [delegate managedObjectContext];
+
+    NSMutableArray *devices;
+    
+    NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Project"];
+    
+    devices = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    
+    
+    
+    NSManagedObject *selectedDevice=[devices objectAtIndex:index];
+
+    
+    if (selectedDevice) {
+        
+        
+
+       
+
+        
+        [selectedDevice setValue:[item ProjectName] forKey:@"name"];
+        [selectedDevice setValue:[[item NetworkIp] ip4] forKey:@"ip1"];
+        [selectedDevice setValue:[[item NetworkIp] ip3] forKey:@"ip2"];
+        [selectedDevice setValue:[[item NetworkIp] ip2] forKey:@"ip3"];
+        [selectedDevice setValue:[[item NetworkIp] ip1] forKey:@"ip4"];
+    
+        
+    }
+    
+    
+    
+    
+    
+    NSError *error;
+    if (![context save:&error]) {
+        NSLog(@"Error:%@", error);
+    }
+    NSLog(@"Data saved");
+    
+    
+}
+
+
+//-(void)loadnetwork{
+//
+//    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+//    NSManagedObjectContext *context = [delegate managedObjectContext];
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//    NSEntityDescription *entity = [NSEntityDescription
+//                                   entityForName:@"Project" inManagedObjectContext:context];
+//    [fetchRequest setEntity:entity];
+//    NSError *error;
+//    fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+//
+//
+//    for (NSManagedObject *obj in fetchedObjects) {
+//
+//        Project *newProject=[[Project alloc]init];
+//
+//        [newProject setProjectID:[obj valueForKey:@"projectID"]];
+//        [newProject setProjectName:[obj valueForKey:@"name"]];
+//        [[newProject NetworkIp]setIp1:[obj valueForKey:@"ip1"]];
+//        [[newProject NetworkIp]setIp2:[obj valueForKey:@"ip2"]];
+//        [[newProject NetworkIp]setIp3:[obj valueForKey:@"ip3"]];
+//        [[newProject NetworkIp]setIp4:[obj valueForKey:@"ip4"]];
+//
+//        [ProjectList addObject:newProject];
+//        NSLog(@"id %d",[[obj valueForKey:@"projectID"] integerValue]);
+//
+//    }
+//
+//
+//}
+
+
+    
 
 @end
