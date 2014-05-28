@@ -169,7 +169,7 @@ NSManagedObject *selectedObject;
  
     int ipNumber = [self power:2 to:(32-subnet)];
     
-    if( [clientCounter intValue] < ipNumber)
+    if( [clientCounter intValue] <= ipNumber)
     {
         self.MapButton.enabled = YES;
         self.MapButton.tintColor=[UIColor grayColor];
@@ -230,15 +230,18 @@ NSManagedObject *selectedObject;
     while (temp==1) {
         
         counter++;
+        
         pow=[self power:2 to:counter];
 
-        if (pow>item) {
+        if (pow>=item) {
             temp=0;
         
         }
         
+        
     }
-
+    
+    NSLog(@"me %d",pow);
     
     return pow;
     
@@ -262,14 +265,10 @@ willDisplayHeaderView : (UIView*) view
     [super viewDidLoad];
     
     
+    UIImage *image = [UIImage imageNamed:@"back.png"];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    [self.view  insertSubview:imageView atIndex:0];
     
-    ///////////
-    UIGraphicsBeginImageContext(self.view.frame.size);
-    [[UIImage imageNamed:@"back.png"] drawInRect:self.view.bounds];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
-    ////////////////////
     
     self.navigationController.navigationBar.barTintColor=[UIColor blackColor];
     
@@ -280,7 +279,6 @@ willDisplayHeaderView : (UIView*) view
                                     [UIColor whiteColor],NSBackgroundColorAttributeName,nil];
     
     self.navigationController.navigationBar.titleTextAttributes = textAttributes;
-    
     
     ///tab bar
     
@@ -306,28 +304,18 @@ willDisplayHeaderView : (UIView*) view
     [self.picker selectRow:item4 inComponent:3 animated:YES];
     [self.picker selectRow:sub inComponent:4 animated:YES];
     
-//    [[currentProject NetworkIp]setIp1:[NSNumber numberWithInt:item1]];
-//    [[currentProject NetworkIp]setIp2:[NSNumber numberWithInt:item2]];
-//    [[currentProject NetworkIp]setIp3:[NSNumber numberWithInt:item3 ]];
-//    [[currentProject NetworkIp]setIp4:[NSNumber numberWithInt:item4 ]];
-//    [[currentProject NetworkIp]setSubnetMask:[NSNumber numberWithInt:sub]];
-//    
-    //binarryIP=[[NSMutableArray alloc]init];
     
     self.MapButton.enabled = NO;
     NSNumber *clientCounter=[self clientCount:currentProject];
-    int ipNumber = [self power:2 to:sub];
+    int ipNumber = [self power:2 to:(32-sub)];
     
-    if( [clientCounter intValue] < ipNumber)
+    if( [clientCounter intValue] <= ipNumber)
     {
-        self.MapButton.enabled = NO;
-        self.MapButton.tintColor=[UIColor grayColor];
-
+        self.MapButton.enabled = YES;
         
     }else
     {
-        self.MapButton.enabled = YES;
-        self.MapButton.tintColor=[UIColor whiteColor];
+        self.MapButton.enabled = NO;
 
         
     }
@@ -337,7 +325,8 @@ willDisplayHeaderView : (UIView*) view
     self.MapButton.layer.borderColor=[[UIColor blackColor]CGColor];
     self.MapButton.layer.borderWidth= 2.5f;
 
-    
+    self.MapButton.tintColor=[UIColor redColor];
+
     // [self.MapButton setTitleTextAttributes:[UIColor lightGrayColor] forState:UIControlStateNormal];
     
     

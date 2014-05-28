@@ -26,6 +26,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UIImage *image = [UIImage imageNamed:@"back.png"];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    [self.view  insertSubview:imageView atIndex:0];
+    
+
 	// Do any additional setup after loading the view.
 }
 

@@ -110,12 +110,11 @@ willDisplayHeaderView : (UIView*) view
     
     //////////////////////////////
     
-    UIGraphicsBeginImageContext(self.view.frame.size);
-    [[UIImage imageNamed:@"back.png"] drawInRect:self.view.bounds];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+    UIImage *image = [UIImage imageNamed:@"back.png"];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    [self.view  insertSubview:imageView atIndex:0];
     
+
     
     
     self.NetworkName.text =[self.currentNetwork NetworkName];

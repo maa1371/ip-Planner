@@ -47,6 +47,7 @@ int  myindex;
     
 }
 
+
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
     
@@ -179,12 +180,24 @@ int  myindex;
     
 }
 
+
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
     ProjectList =[[NSMutableArray alloc]init];
 
 
+    UIImage *image = [UIImage imageNamed:@"back.png"];
+    
+    
+    
+        self.collectionView.backgroundColor = [UIColor colorWithPatternImage:image];
+    //
+    
    // self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
 
     self.navigationController.navigationBar.barTintColor=[UIColor blackColor];
@@ -216,21 +229,6 @@ int  myindex;
 
     
     
-//    UIImage *image = [UIImage imageNamed:@"edit.png"];
-//    CGRect buttonFrame = CGRectMake(0, 0, image.size.width, image.size.height);
-//    
-//    UIButton *button = [[UIButton alloc] initWithFrame:buttonFrame];
-//    [button addTarget:self action:@selector(editAction:) forControlEvents:UIControlEventTouchUpInside];
-//    [button setImage:image forState:UIControlStateNormal];
-//    
-//    editButton= [[UIBarButtonItem alloc] initWithCustomView:button];
-//    self.navigationItem.rightBarButtonItems=@[editButton];
-//    
-//    
-//    
-//    self.navigationItem.leftBarButtonItems = @[addButton];
-    
-    /////
     
     
     
@@ -240,29 +238,7 @@ int  myindex;
     currentIndex=[[NSIndexPath alloc]init];
     edithEnable=NO;
     cellSelected=[[NSMutableArray alloc]init];
-    //init project sample
-//    Project *new=[[Project alloc]init];
-//    [new setProjectName:@"sample Project"];
-//    
-//    //create a network list for project sample
-//    Netwok *newNetwork =[[Netwok alloc]init];
-//   
-//    [newNetwork setClients:[NSNumber numberWithInt:100]];
-//    [newNetwork setServers:[NSNumber numberWithInt:10]];
-//    [newNetwork setNetworkName:@"Sample Network"];
-//    
-//    ip  *newIP =[[ip alloc]init];
-//    [newIP setIP:[NSNumber numberWithInteger:192] next2:[NSNumber numberWithInteger:168]  next3:[NSNumber numberWithInteger:1]  next4:[NSNumber numberWithInteger:0]  subnet:[NSNumber numberWithInteger:24] ];
-//    
-//    //set sample network list for sample project
-//    [new.NetworkList addObject:newNetwork];
-//    //[new.NetworkList addObject:newNetwork];
-//    //[new.NetworkList addObject:newNetwork];
-//    [new setNetworkIp:newIP];
-//    
-//    
-//    
-//    [ProjectList addObject:new];
+
     
     [self loadData];
 
@@ -460,13 +436,13 @@ int  myindex;
     
     
     
-    UIGraphicsBeginImageContext(self.view.frame.size);
-    [[UIImage imageNamed:@"back.png"] drawInRect:self.view.bounds];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    self.collectionView.backgroundColor = [UIColor colorWithPatternImage:image];
-    
+//    UIGraphicsBeginImageContext(self.view.frame.size);
+//    [[UIImage imageNamed:@"back.png"] drawInRect:self.view.bounds];
+//    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    
+//    self.collectionView.backgroundColor = [UIColor colorWithPatternImage:image];
+//    
     
     
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];

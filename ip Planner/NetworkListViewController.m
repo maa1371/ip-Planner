@@ -52,10 +52,14 @@
     return self;
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     ///////////
+    
+    
+    
     
     //    UIGraphicsBeginImageContext(self.view.frame.size);
     //    [[UIImage imageNamed:@"back.png"] drawInRect:self.view.bounds];
@@ -68,7 +72,8 @@
     [self.view  insertSubview:imageView atIndex:0];
     
     ////////////////////
-    self.navigationController.navigationBar.barTintColor=[UIColor blackColor];
+    
+ //self.navigationController.navigationBar.barTintColor=[UIColor blackColor];
     
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     

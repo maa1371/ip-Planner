@@ -31,15 +31,15 @@ NSMutableArray * serverNumround;
 {
     
     [super viewDidLoad];
-    
+   
     
     ///////////
-    UIGraphicsBeginImageContext(self.view.frame.size);
-    [[UIImage imageNamed:@"back.png"] drawInRect:self.view.bounds];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
-    ////////////////////
+    UIImage *image = [UIImage imageNamed:@"back.png"];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    [self.view  insertSubview:imageView atIndex:0];
+    
+  ////////////////////
+    self.tableView.backgroundColor=[UIColor blackColor];
     
     self.navigationController.navigationBar.barTintColor=[UIColor blackColor];
     
@@ -740,7 +740,7 @@ NSMutableArray * serverNumround;
         counter++;
         pow=[self power:2 to:counter];
         
-        if (pow>item) {
+        if (pow>=item) {
             temp=0;
             
         }

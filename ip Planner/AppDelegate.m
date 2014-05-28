@@ -15,6 +15,8 @@
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
 
+
+
 -(void)doSomethingWithString:(NSString*)parameter {
     
     self.info=parameter;
@@ -24,6 +26,10 @@
 {
     
     [[UICollectionView appearance]setBackgroundColor:[UIColor whiteColor ]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
+
+    
+
     // Override point for customization after application launch.
     return YES;
 }
