@@ -26,6 +26,10 @@ NSMutableArray * serverNum;
 NSMutableArray * clientsNumround;
 NSMutableArray * serverNumround;
 
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
 
 - (void)viewDidLoad
 {

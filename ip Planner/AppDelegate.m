@@ -26,9 +26,12 @@
 {
     
     [[UICollectionView appearance]setBackgroundColor:[UIColor whiteColor ]];
+
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+
     [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
 
-    
+
 
     // Override point for customization after application launch.
     return YES;

@@ -781,6 +781,11 @@ int  myindex;
 //
 //}
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 
     
 
